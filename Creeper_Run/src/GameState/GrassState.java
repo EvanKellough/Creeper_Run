@@ -277,7 +277,7 @@ public class GrassState extends GameState {
 		player.setEast(Keys.keyState[Keys.EAST]);
 		player.setNorth(Keys.keyState[Keys.NORTH]);
 		player.setSouth(Keys.keyState[Keys.SOUTH]);
-
+		
 		player.setDashing(Keys.keyState[Keys.BUTTON2]);
 		if(Keys.isPressed(Keys.BUTTON3)) player.setAttacking();
 		if(Keys.isPressed(Keys.BUTTON4)) player.setCharging();

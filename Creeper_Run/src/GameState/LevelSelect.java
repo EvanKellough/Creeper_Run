@@ -22,8 +22,9 @@ public class LevelSelect extends GameState {
 	
 	private int currentChoice = 0;
 	private String[] options = {
-		"Level 1",
-		"Level 2",
+		"Side Scroller",
+		"Top Down",
+		"Quit"
 		/*"Boss Battle",
 		"Level 3",
 		"Level 4",
@@ -100,13 +101,14 @@ public class LevelSelect extends GameState {
 		g.setColor(titleColor);
 		g.setFont(titleFont);
 		g.drawImage(minecraft, 0, 0, null);
-		g.drawString("SECRET LEVEL", 60, 20); //Title
+		g.drawString("Tests", 130, 20); //Title
 		
 		// draw menu options
 		g.setFont(font);
 		g.setColor(Color.WHITE);
-		g.drawString("The House", 145, 115);
-		g.drawString("Quit", 145, 135);
+		g.drawString("Side Scroller", 145, 115);
+		g.drawString("Top Down", 145, 135);
+		g.drawString("Quit", 145, 155);
 		/*
 		g.drawString("The Beginning", 145, 35);
 		g.drawString("Nether", 145, 55);
@@ -123,6 +125,7 @@ public class LevelSelect extends GameState {
 		// draw floating head
 		if(currentChoice == 0) g.drawImage(head, 125, 104, null);
 		else if(currentChoice == 1) g.drawImage(head, 125, 124, null);
+		else if(currentChoice == 2) g.drawImage(head, 125, 144, null);
 		/*
 		if(currentChoice == 0) g.drawImage(head, 125, 24, null);
 		else if(currentChoice == 1) g.drawImage(head, 125, 44, null);
@@ -146,7 +149,12 @@ public class LevelSelect extends GameState {
 			PlayerSave.init();
 			gsm.setState(GameStateManager.CAVESTATE);
 		}
-		else if(currentChoice == 1) {
+		else if(currentChoice == 1){
+			//JukeBox.play("menuselect");
+			PlayerSave.init();
+			gsm.setState(GameStateManager.NETHERSTATE);
+		}
+		else if(currentChoice == 2) {
 			System.exit(0);
 		}
 		/*

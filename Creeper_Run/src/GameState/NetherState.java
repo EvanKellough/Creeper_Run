@@ -12,7 +12,8 @@ import Entity.Enemy;
 import Entity.EnemyProjectile;
 import Entity.EnergyParticle;
 import Entity.Explosion;
-import Entity.HUD;
+import Entity.HUD2;
+import Entity.Player2;
 import Entity.Player;
 import Entity.PlayerSave;
 import Entity.Teleport;
@@ -29,14 +30,14 @@ import TileMap.TileMap;
 public class NetherState extends GameState {
 	
 	private Background temple;
-	private Player player;
+	private Player2 player2;
 	private TileMap tileMap;
 	private ArrayList<Enemy> enemies;
 	private ArrayList<EnemyProjectile> eprojectiles;
 	private ArrayList<EnergyParticle> energyParticles;
 	private ArrayList<Explosion> explosions;
 	
-	private HUD hud;
+	private HUD2 hud;
 	private BufferedImage hageonText;
 	private Title title;
 	private Title subtitle;
@@ -59,7 +60,7 @@ public class NetherState extends GameState {
 	public void init() {
 		
 		// backgrounds
-		temple = new Background("/Backgrounds/temple.gif", 0.5, 0);
+		temple = new Background("/Backgrounds/cave.gif", 0.5, 0);
 		
 		// tilemap
 		tileMap = new TileMap(30);
@@ -68,28 +69,28 @@ public class NetherState extends GameState {
 		tileMap.setPosition(140, 0);
 		tileMap.setTween(1);
 		
-		// player
-		player = new Player(tileMap);
-		player.setPosition(300, 131);
-		player.setHealth(PlayerSave.getHealth());
-		player.setLives(PlayerSave.getLives());
-		player.setTime(PlayerSave.getTime());
+		// player2
+		player2 = new Player2(tileMap);
+		player2.setPosition(300, 131);
+		player2.setHealth(PlayerSave.getHealth());
+		player2.setLives(PlayerSave.getLives());
+		player2.setTime(PlayerSave.getTime());
 		
 		// enemies
 		enemies = new ArrayList<Enemy>();
 		eprojectiles = new ArrayList<EnemyProjectile>();
-		populateEnemies();
+		//populateEnemies();
 		
 		// energy particle
 		energyParticles = new ArrayList<EnergyParticle>();
 		
-		player.init(enemies, energyParticles);
+		player2.init(enemies, energyParticles);
 		
 		// explosions
 		explosions = new ArrayList<Explosion>();
 		
 		// hud
-		hud = new HUD(player);
+		hud = new HUD2(player2);
 		
 		// title and subtitle
 		try {
@@ -125,35 +126,35 @@ public class NetherState extends GameState {
 		JukeBox.loop("level2", 600, JukeBox.getFrames("level2")-2200); 
 		*/
 	}
-	
+	/*
 	private void populateEnemies() {
 		enemies.clear();
 		GelPop gp;
 		Gazer g;
 		Tengu t;
 		
-		gp = new GelPop(tileMap, player);
+		gp = new GelPop(tileMap, player2);
 		gp.setPosition(750, 100);
 		enemies.add(gp);
-		gp = new GelPop(tileMap, player);
+		gp = new GelPop(tileMap, player2);
 		gp.setPosition(900, 150);
 		enemies.add(gp);
-		gp = new GelPop(tileMap, player);
+		gp = new GelPop(tileMap, player2);
 		gp.setPosition(1320, 250);
 		enemies.add(gp);
-		gp = new GelPop(tileMap, player);
+		gp = new GelPop(tileMap, player2);
 		gp.setPosition(1570, 160);
 		enemies.add(gp);
-		gp = new GelPop(tileMap, player);
+		gp = new GelPop(tileMap, player2);
 		gp.setPosition(1590, 160);
 		enemies.add(gp);
-		gp = new GelPop(tileMap, player);
+		gp = new GelPop(tileMap, player2);
 		gp.setPosition(2600, 370);
 		enemies.add(gp);
-		gp = new GelPop(tileMap, player);
+		gp = new GelPop(tileMap, player2);
 		gp.setPosition(2620, 370);
 		enemies.add(gp);
-		gp = new GelPop(tileMap, player);
+		gp = new GelPop(tileMap, player2);
 		gp.setPosition(2640, 370);
 		enemies.add(gp);
 		
@@ -171,20 +172,21 @@ public class NetherState extends GameState {
 		enemies.add(g);
 		
 		
-		t = new Tengu(tileMap, player, enemies);
+		t = new Tengu(tileMap, player2, enemies);
 		t.setPosition(1900, 580);
 		enemies.add(t);
-		t = new Tengu(tileMap, player, enemies);
+		t = new Tengu(tileMap, player2, enemies);
 		t.setPosition(2330, 550);
 		enemies.add(t);
-		t = new Tengu(tileMap, player, enemies);
+		t = new Tengu(tileMap, player2, enemies);
 		t.setPosition(2400, 490);
 		enemies.add(t);
-		t = new Tengu(tileMap, player, enemies);
+		t = new Tengu(tileMap, player2, enemies);
 		t.setPosition(2457, 430);
 		enemies.add(t);
 		
 	}
+	*/
 	
 	public void update() {
 		
@@ -192,12 +194,12 @@ public class NetherState extends GameState {
 		handleInput();
 		/*
 		// check if quake event should start
-		if(player.getx() > 2175 && !tileMap.isShaking()) {
+		if(player2.getx() > 2175 && !tileMap.isShaking()) {
 			eventQuake = blockInput = true;
 		}
 		*/
 		// check if end of level event should start
-		if(teleport.contains(player)) {
+		if(teleport.contains(player2)) {
 			eventFinish = blockInput = true;
 		}
 		
@@ -220,16 +222,16 @@ public class NetherState extends GameState {
 		// move backgrounds
 		//temple.setPosition(tileMap.getx(), tileMap.gety());
 		
-		// update player
-		player.update();
-		if(player.getHealth() == 0 || player.gety() > tileMap.getHeight()) {
+		// update player2
+		player2.update();
+		if(player2.getHealth() == 0 || player2.gety() > tileMap.getHeight()) {
 			eventDead = blockInput = true;
 		}
 		
 		// update tilemap
 		tileMap.setPosition(
-			GamePanel.WIDTH / 2 - player.getx(),
-			GamePanel.HEIGHT / 2 - player.gety()
+			GamePanel.WIDTH / 2 - player2.getx(),
+			GamePanel.HEIGHT / 2 - player2.gety()
 		);
 		tileMap.update();
 		tileMap.fixBounds();
@@ -293,8 +295,8 @@ public class NetherState extends GameState {
 			explosions.get(i).draw(g);
 		}
 		
-		// draw player
-		player.draw(g);
+		// draw player2
+		player2.draw(g);
 		
 		// draw teleport
 		teleport.draw(g);
@@ -316,16 +318,22 @@ public class NetherState extends GameState {
 	
 	public void handleInput() {
 		if(Keys.isPressed(Keys.ESCAPE)) gsm.setPaused(true);
-		if(blockInput || player.getHealth() == 0) return;
+		if(blockInput || player2.getHealth() == 0) return;
 		//if(Keys.isPressed(Keys.MUTE)) JukeBox.stop("level2");
-		player.setUp(Keys.keyState[Keys.UP]);
-		player.setLeft(Keys.keyState[Keys.LEFT]);
-		player.setDown(Keys.keyState[Keys.DOWN]);
-		player.setRight(Keys.keyState[Keys.RIGHT]);
-		player.setJumping(Keys.keyState[Keys.BUTTON1]);
-		player.setDashing(Keys.keyState[Keys.BUTTON2]);
-		if(Keys.isPressed(Keys.BUTTON3)) player.setAttacking();
-		if(Keys.isPressed(Keys.BUTTON4)) player.setCharging();
+		player2.setUp(Keys.keyState[Keys.UP]);
+		player2.setDown(Keys.keyState[Keys.DOWN]);
+		
+		player2.setWest(Keys.keyState[Keys.WEST]);
+		player2.setEast(Keys.keyState[Keys.EAST]);
+		//player2.setJumping(Keys.keyState[Keys.NORTH]);
+		
+		player2.setNorth(Keys.keyState[Keys.NORTH]);
+		
+		player2.setSouth(Keys.keyState[Keys.SOUTH]);
+
+		player2.setDashing(Keys.keyState[Keys.BUTTON2]);
+		if(Keys.isPressed(Keys.BUTTON3)) player2.setAttacking();
+		if(Keys.isPressed(Keys.BUTTON4)) player2.setCharging();
 	}
 
 ///////////////////////////////////////////////////////
@@ -334,10 +342,10 @@ public class NetherState extends GameState {
 	
 	// reset level
 	private void reset() {
-		player.loseLife();
-		player.reset();
-		player.setPosition(300, 131);
-		populateEnemies();
+		player2.loseLife();
+		player2.reset();
+		player2.setPosition(300, 131);
+		//populateEnemies();
 		blockInput = true;
 		eventCount = 0;
 		tileMap.setShaking(false, 0);
@@ -374,10 +382,10 @@ public class NetherState extends GameState {
 		}
 	}
 	
-	// player has died
+	// player2 has died
 	private void eventDead() {
 		eventCount++;
-		if(eventCount == 1) player.setDead();
+		if(eventCount == 1) player2.setDead();
 		if(eventCount == 60) {
 			tb.clear();
 			tb.add(new Rectangle(
@@ -390,7 +398,7 @@ public class NetherState extends GameState {
 			tb.get(0).height += 8;
 		}
 		if(eventCount >= 120) {
-			if(player.getLives() == 0) {
+			if(player2.getLives() == 0) {
 				gsm.setState(GameStateManager.MENUSTATE);
 			}
 			else {
@@ -405,17 +413,17 @@ public class NetherState extends GameState {
 	private void eventQuake() {
 		eventCount++;
 		if(eventCount == 1) {
-			player.stop();
-			player.setPosition(2175, player.gety());
+			player2.stop();
+			player2.setPosition(2175, player2.gety());
 		}
 		if(eventCount == 60) {
-			player.setEmote(Player.CONFUSED);
+			player2.setEmote(Player2.CONFUSED);
 		}
-		if(eventCount == 120) player.setEmote(Player.NONE);
+		if(eventCount == 120) player2.setEmote(Player2.NONE);
 		if(eventCount == 150) tileMap.setShaking(true, 10);
-		if(eventCount == 180) player.setEmote(Player.SURPRISED);
+		if(eventCount == 180) player2.setEmote(Player2.SURPRISED);
 		if(eventCount == 300) {
-			player.setEmote(Player.NONE);
+			player2.setEmote(Player2.NONE);
 			eventQuake = blockInput = false;
 			eventCount = 0;
 		}
@@ -427,8 +435,8 @@ public class NetherState extends GameState {
 		if(eventCount == 1) {
 			/*JukeBox.play("teleport");
 			JukeBox.stop("level2");*/
-			player.setTeleporting(true);
-			player.stop();
+			player2.setTeleporting(true);
+			player2.stop();
 		}
 		else if(eventCount == 120) {
 			tb.clear();
@@ -444,9 +452,9 @@ public class NetherState extends GameState {
 			JukeBox.stop("level2");*/
 		}
 		if(eventCount == 180) {
-			PlayerSave.setHealth(player.getHealth());
-			PlayerSave.setLives(player.getLives());
-			PlayerSave.setTime(player.getTime());
+			PlayerSave.setHealth(player2.getHealth());
+			PlayerSave.setLives(player2.getLives());
+			PlayerSave.setTime(player2.getTime());
 			gsm.setState(GameStateManager.CAVESTATE);
 			//JukeBox.stop("level2");
 		}

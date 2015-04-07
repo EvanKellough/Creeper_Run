@@ -52,8 +52,10 @@ public abstract class MapObject {
 	protected boolean facingRight;
 	
 	// movement
-	protected boolean left;
-	protected boolean right;
+	protected boolean west;
+	protected boolean east;
+	protected boolean north;
+	protected boolean south;
 	protected boolean up;
 	protected boolean down;
 	protected boolean jumping;
@@ -208,8 +210,11 @@ public abstract class MapObject {
 		ymap = tileMap.gety();
 	}
 	
-	public void setLeft(boolean b) { left = b; }
-	public void setRight(boolean b) { right = b; }
+	public void setWest(boolean b) { west = b; }
+	public void setEast(boolean b) { east = b; }
+	public void setNorth(boolean b) { north = b; }
+	public void setSouth(boolean b) { south = b; }
+	
 	public void setUp(boolean b) { up = b; }
 	public void setDown(boolean b) { down = b; }
 	public void setJumping(boolean b) { jumping = b; }

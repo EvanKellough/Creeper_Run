@@ -13,30 +13,32 @@ public class Keys {
 	public static boolean keyState[] = new boolean[NUM_KEYS];
 	public static boolean prevKeyState[] = new boolean[NUM_KEYS];
 	
-	public static int UP = 0;
-	public static int LEFT = 1;
-	public static int DOWN = 2;
-	public static int RIGHT = 3;
-	public static int BUTTON1 = 4;
-	public static int BUTTON2 = 5;
-	public static int BUTTON3 = 6;
-	public static int BUTTON4 = 7;
-	public static int ENTER = 8;
-	public static int ESCAPE = 9;
-	public static int MUTE = 10;
+	public static int UP = 0; //menu up
+	public static int WEST = 1; //left
+	public static int DOWN = 2; //menu down
+	public static int EAST = 3; //right
+	public static int NORTH = 4; //up
+	public static int BUTTON2 = 5; //inventory
+	public static int BUTTON3 = 6; //short range attack
+	public static int BUTTON4 = 7; //charge attack
+	public static int ENTER = 8; //select
+	public static int ESCAPE = 9; //pause
+	public static int MUTE = 10; //mute soundtrack
+	public static int SOUTH = 11; //down
 	
 	public static void keySet(int i, boolean b) {
-		if(i == KeyEvent.VK_UP) keyState[UP] = b;
-		else if(i == KeyEvent.VK_A) keyState[LEFT] = b;
-		else if(i == KeyEvent.VK_DOWN) keyState[DOWN] = b;
-		else if(i == KeyEvent.VK_D) keyState[RIGHT] = b;
-		else if(i == KeyEvent.VK_W) keyState[BUTTON1] = b;
-		else if(i == KeyEvent.VK_E) keyState[BUTTON2] = b;
-		else if(i == KeyEvent.VK_R) keyState[BUTTON3] = b;
-		else if(i == KeyEvent.VK_SPACE) keyState[BUTTON4] = b;
-		else if(i == KeyEvent.VK_ENTER) keyState[ENTER] = b;
-		else if(i == KeyEvent.VK_ESCAPE) keyState[ESCAPE] = b;
-		else if(i == KeyEvent.VK_M) keyState[MUTE] = b;
+		if(i == KeyEvent.VK_UP) keyState[UP] = b; //MENU UP
+		else if(i == KeyEvent.VK_A) keyState[WEST] = b; //LEFT
+		else if(i == KeyEvent.VK_W) keyState[NORTH] = b; //UP
+		else if(i == KeyEvent.VK_D) keyState[EAST] = b; //RIGHT
+		else if(i == KeyEvent.VK_S) keyState[SOUTH] = b; //DOWN
+		else if(i == KeyEvent.VK_DOWN) keyState[DOWN] = b; //MENU DOWN
+		else if(i == KeyEvent.VK_E) keyState[BUTTON2] = b; //FUTURE inventory
+		else if(i == KeyEvent.VK_R) keyState[BUTTON3] = b; //SHORT RANGE ATTACK
+		else if(i == KeyEvent.VK_SPACE) keyState[BUTTON4] = b; //CHARGE ATTACK
+		else if(i == KeyEvent.VK_ENTER) keyState[ENTER] = b; //SELECT
+		else if(i == KeyEvent.VK_ESCAPE) keyState[ESCAPE] = b; //PAUSE
+		else if(i == KeyEvent.VK_M) keyState[MUTE] = b; //MUTE SOUNDTRACK
 	}
 	
 	public static void update() {

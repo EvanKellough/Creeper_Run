@@ -11,6 +11,7 @@ import TileMap.TileMap;
 public class FireBall extends MapObject {
 	
 	private boolean hit;
+	private boolean right;
 	private boolean remove;
 	private BufferedImage[] sprites;
 	private BufferedImage[] hitSprites;

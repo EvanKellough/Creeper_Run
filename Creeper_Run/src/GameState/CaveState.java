@@ -307,7 +307,24 @@ public class CaveState extends GameState {
 	public void handleInput() {
 		if(Keys.isPressed(Keys.ESCAPE)) gsm.setPaused(true);
 		if(blockInput || player.getHealth() == 0) return;
-		//if(Keys.isPressed(Keys.MUTE)) JukeBox.stop("level3");
+		//if(Keys.isPressed(Keys.MUTE)) JukeBox.stop("level2");
+		player.setUp(Keys.keyState[Keys.UP]);
+		player.setDown(Keys.keyState[Keys.DOWN]);
+		
+		player.setWest(Keys.keyState[Keys.WEST]);
+		player.setEast(Keys.keyState[Keys.EAST]);
+		player.setJumping(Keys.keyState[Keys.NORTH]);
+
+		player.setDashing(Keys.keyState[Keys.BUTTON2]);
+		if(Keys.isPressed(Keys.BUTTON3)) player.setAttacking();
+		if(Keys.isPressed(Keys.BUTTON4)) player.setCharging();
+	}
+
+	/*
+	public void handleInput() {
+		if(Keys.isPressed(Keys.ESCAPE)) gsm.setPaused(true);
+		if(blockInput || player.getHealth() == 0) return;
+		if(Keys.isPressed(Keys.MUTE)) JukeBox.stop("level3");
 		player.setUp(Keys.keyState[Keys.UP]);
 		player.setLeft(Keys.keyState[Keys.LEFT]);
 		player.setDown(Keys.keyState[Keys.DOWN]);
@@ -317,7 +334,8 @@ public class CaveState extends GameState {
 		if(Keys.isPressed(Keys.BUTTON3)) player.setAttacking();
 		if(Keys.isPressed(Keys.BUTTON4)) player.setCharging();
 	}
-
+	*/
+	
 ///////////////////////////////////////////////////////
 //////////////////// EVENTS
 ///////////////////////////////////////////////////////

@@ -39,14 +39,14 @@ public class GelPop extends Enemy {
 		animation.setFrames(sprites);
 		animation.setDelay(4);
 		
-		left = true;
+		west = true;
 		facingRight = false;
 		
 	}
 	
 	private void getNextPosition() {
-		if(left) dx = -moveSpeed;
-		else if(right) dx = moveSpeed;
+		if(west) dx = -moveSpeed;
+		else if(east) dx = moveSpeed;
 		else dx = 0;
 		if(falling) {
 			dy += fallSpeed;
@@ -74,18 +74,18 @@ public class GelPop extends Enemy {
 		checkTileMapCollision();
 		calculateCorners(x, ydest + 1);
 		if(!bottomLeft) {
-			left = false;
-			right = facingRight = true;
+			west = false;
+			east = facingRight = true;
 		}
 		if(!bottomRight) {
-			left = true;
-			right = facingRight = false;
+			west = true;
+			east = facingRight = false;
 		}
 		setPosition(xtemp, ytemp);
 		
 		if(dx == 0) {
-			left = !left;
-			right = !right;
+			west = !west;
+			east = !east;
 			facingRight = !facingRight;
 		}
 		

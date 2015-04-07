@@ -23,7 +23,6 @@ public class MenuState extends GameState {
 	private int currentChoice = 0;
 	private String[] options = {
 		"Start",
-		"Open World",
 		"Quit"
 	};
 	
@@ -103,7 +102,6 @@ public class MenuState extends GameState {
 		// draw floating head
 		if(currentChoice == 0) g.drawImage(head, 125, 84, null);
 		else if(currentChoice == 1) g.drawImage(head, 125, 104, null);
-		else if(currentChoice == 2) g.drawImage(head, 125, 124, null);
 		
 	}
 	
@@ -111,15 +109,10 @@ public class MenuState extends GameState {
 		if(currentChoice == 0) {
 			//JukeBox.play("menuselect");
 			PlayerSave.init();
-			gsm.setState(GameStateManager.GRASSSTATE);
+			gsm.setState(GameStateManager.LEVELSELECT);
 		}
 		else if(currentChoice == 1) {
 			System.exit(0);
-		}
-		else if(currentChoice == 2) {
-			//JukeBox.play("menuselect");
-			PlayerSave.init();
-			gsm.setState(GameStateManager.LEVELSELECT);
 		}
 	}
 	

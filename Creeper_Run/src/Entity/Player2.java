@@ -10,12 +10,12 @@ import javax.imageio.ImageIO;
 //import Audio.JukeBox;
 import TileMap.TileMap;
 
-public class Player extends MapObject {
+public class Player2 extends MapObject {
 	
 	// references
 	private ArrayList<Enemy> enemies;
 	
-	// player stuff
+	// Player2 stuff
 	private int lives;
 	private int health;
 	private int maxHealth;
@@ -79,7 +79,7 @@ public class Player extends MapObject {
 	public static final int SURPRISED = 2;
 	private int emote = NONE;
 	
-	public Player(TileMap tm) {
+	public Player2(TileMap tm) {
 		
 		super(tm);
 		
@@ -153,11 +153,11 @@ public class Player extends MapObject {
 		
 		setAnimation(IDLE);
 		/*
-		JukeBox.load("/SFX/playerjump.mp3", "playerjump");
-		JukeBox.load("/SFX/playerlands.mp3", "playerlands");
-		JukeBox.load("/SFX/playerattack.mp3", "playerattack");
-		JukeBox.load("/SFX/playerhit.mp3", "playerhit");
-		JukeBox.load("/SFX/playercharge.mp3", "playercharge");
+		JukeBox.load("/SFX/Player2jump.mp3", "Player2jump");
+		JukeBox.load("/SFX/Player2lands.mp3", "Player2lands");
+		JukeBox.load("/SFX/Player2attack.mp3", "Player2attack");
+		JukeBox.load("/SFX/Player2hit.mp3", "Player2hit");
+		JukeBox.load("/SFX/Player2charge.mp3", "Player2charge");
 		*/
 	}
 	
@@ -176,6 +176,7 @@ public class Player extends MapObject {
 	}
 	public void setTeleporting(boolean b) { teleporting = b; }
 	
+	
 	public void setJumping(boolean b) {
 		if(knockback) return;
 		if(b && !jumping && falling && !alreadyDoubleJump) {
@@ -183,6 +184,7 @@ public class Player extends MapObject {
 		}
 		jumping = b;
 	}
+	
 	public void setAttacking() {
 		if(knockback) return;
 		if(charging) return;
@@ -193,7 +195,7 @@ public class Player extends MapObject {
 		if(knockback) return;
 		if(!attacking && !upattacking && !charging) {
 			charging = true;
-			//JukeBox.play("playercharge");
+			//JukeBox.play("Player2charge");
 			chargingTick = 0;
 		}
 	}
@@ -231,7 +233,7 @@ public class Player extends MapObject {
 	
 	public void hit(int damage) {
 		if(flinching) return;
-		//JukeBox.play("playerhit");
+		//JukeBox.play("Player2hit");
 		stop();
 		health -= damage;
 		if(health < 0) health = 0;
@@ -253,7 +255,7 @@ public class Player extends MapObject {
 	}
 	
 	public void stop() {
-		west = east = up = down = flinching = 
+		west = east = up = down = flinching = north = south =
 			dashing = jumping = attacking = upattacking = charging = false;
 	}
 	
@@ -294,13 +296,41 @@ public class Player extends MapObject {
 					dx = 0;
 				}
 			}
+			
+			if(north) {
+				dy -= moveSpeed;
+				if(dy < -maxSpeed) {
+					dy = -maxSpeed;
+				}
+			}
+			else if(south) {
+				dy += moveSpeed;
+				if(dy > maxSpeed) {
+					dy = maxSpeed;
+				}
+			}
+			else {
+				if(dy > 0) {
+					dy -= stopSpeed;
+					if(dy < 0) {
+						dy = 0;
+					}
+				}
+				else if(dy < 0) {
+					dy += stopSpeed;
+					if(dy > 0) {
+						dy = 0;
+					}
+				}
 		}
 		
+			
 		// cannot move while attacking, except in air
 		if((attacking || upattacking || charging) &&
 			!(jumping || falling)) {
 			dx = 0;
 		}
+		
 		
 		// charging
 		if(charging) {
@@ -310,18 +340,20 @@ public class Player extends MapObject {
 		}
 		
 		// jumping
+		
 		if(jumping && !falling) {
 			//sfx.get("jump").play();
 			dy = jumpStart;
 			falling = true;
-			//JukeBox.play("playerjump");
+			//JukeBox.play("Player2jump");
 		}
+		
 		
 		if(doubleJump) {
 			dy = doubleJumpStart;
 			alreadyDoubleJump = true;
 			doubleJump = false;
-			//JukeBox.play("playerjump");
+			//JukeBox.play("Player2jump");
 			for(int i = 0; i < 6; i++) {
 				energyParticles.add(
 					new EnergyParticle(
@@ -331,7 +363,8 @@ public class Player extends MapObject {
 						EnergyParticle.DOWN));
 			}
 		}
-		
+		}	
+		/*
 		if(!falling) alreadyDoubleJump = false;
 		
 		// falling
@@ -340,9 +373,10 @@ public class Player extends MapObject {
 			if(dy < 0 && !jumping) dy += stopJumpSpeed;
 			if(dy > maxFallSpeed) dy = maxFallSpeed;
 		}
-		
+		*/
 	}
 	
+		
 	private void setAnimation(int i) {
 		currentAction = i;
 		animation.setFrames(sprites.get(currentAction));
@@ -362,14 +396,19 @@ public class Player extends MapObject {
 			);
 		}
 		
+		
 		// update position
-		boolean isFalling = falling;
+		//boolean isFalling = falling;
 		getNextPosition();
 		checkTileMapCollision();
 		setPosition(xtemp, ytemp);
-		if(isFalling && !falling) {
-			//JukeBox.play("playerlands");
+		
+		/*
+		 	if(isFalling && !falling) {
+			//JukeBox.play("Playerlands");
 		}
+		*/
+		
 		if(dx == 0) x = (int)x;
 		
 		// check done flinching
@@ -379,6 +418,7 @@ public class Player extends MapObject {
 				flinching = false;
 			}
 		}
+		
 		
 		// energy particles
 		for(int i = 0; i < energyParticles.size(); i++) {
@@ -482,7 +522,7 @@ public class Player extends MapObject {
 		}
 		else if(upattacking) {
 			if(currentAction != UPATTACKING) {
-				//JukeBox.play("playerattack");
+				//JukeBox.play("Player2attack");
 				setAnimation(UPATTACKING);
 				aur.x = (int)x - 15;
 				aur.y = (int)y - 50;
@@ -502,7 +542,7 @@ public class Player extends MapObject {
 		}
 		else if(attacking) {
 			if(currentAction != ATTACKING) {
-				//JukeBox.play("playerattack");
+				//JukeBox.play("Player2attack");
 				setAnimation(ATTACKING);
 				ar.y = (int)y - 6;
 				if(facingRight) ar.x = (int)x + 10;

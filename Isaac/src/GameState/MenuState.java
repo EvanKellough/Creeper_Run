@@ -40,14 +40,15 @@ public class MenuState extends GameState {
 		try {
 			// load minecraft Background
 			minecraft = ImageIO.read(
-				getClass().getResourceAsStream("/Resources/Backgrounds/menu.png")
-				).getSubimage(0, 0, 800, 600);
+				getClass().getResourceAsStream("/Backgrounds/menu.png")
+				)/*.getSubimage(0, 300, 400, 300)*/;
 			
+			/*
 			// load floating head
 			head = ImageIO.read(
 				getClass().getResourceAsStream("/HUD/Hud.gif")
 			).getSubimage(0, 12, 12, 11);
-			
+			*/
 			// titles and fonts
 			titleColor = Color.WHITE;
 			titleFont = new Font("Times New Roman", Font.PLAIN, 28);
@@ -85,6 +86,8 @@ public class MenuState extends GameState {
 		g.setColor(titleColor);
 		g.setFont(titleFont);
 		g.drawImage(minecraft, 0, 0, null);
+		
+		/*
 		g.drawString("C R E E P E R   R U N", 30, 60); //Title
 		g.setFont(font3);
 		g.drawString("The untold story of the humble creeper.. Alpha Version 1.1", 5, 198); //Title
@@ -102,7 +105,7 @@ public class MenuState extends GameState {
 		// draw floating head
 		if(currentChoice == 0) g.drawImage(head, 125, 84, null);
 		else if(currentChoice == 1) g.drawImage(head, 125, 104, null);
-		
+		*/
 	}
 	
 	private void select() {

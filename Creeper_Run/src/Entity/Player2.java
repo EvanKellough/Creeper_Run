@@ -176,7 +176,7 @@ public class Player2 extends MapObject {
 	}
 	public void setTeleporting(boolean b) { teleporting = b; }
 	
-	/*
+	
 	public void setJumping(boolean b) {
 		if(knockback) return;
 		if(b && !jumping && falling && !alreadyDoubleJump) {
@@ -184,7 +184,7 @@ public class Player2 extends MapObject {
 		}
 		jumping = b;
 	}
-	*/
+	
 	public void setAttacking() {
 		if(knockback) return;
 		if(charging) return;
@@ -297,13 +297,13 @@ public class Player2 extends MapObject {
 				}
 			}
 			
-			if(south) {
+			if(north) {
 				dy -= moveSpeed;
 				if(dy < -maxSpeed) {
 					dy = -maxSpeed;
 				}
 			}
-			else if(north) {
+			else if(south) {
 				dy += moveSpeed;
 				if(dy > maxSpeed) {
 					dy = maxSpeed;
@@ -324,7 +324,7 @@ public class Player2 extends MapObject {
 				}
 		}
 		
-			/*
+			
 		// cannot move while attacking, except in air
 		if((attacking || upattacking || charging) &&
 			!(jumping || falling)) {
@@ -363,8 +363,8 @@ public class Player2 extends MapObject {
 						EnergyParticle.DOWN));
 			}
 		}
-		
-		
+		}	
+		/*
 		if(!falling) alreadyDoubleJump = false;
 		
 		// falling
@@ -375,7 +375,7 @@ public class Player2 extends MapObject {
 		}
 		*/
 	}
-	}
+	
 		
 	private void setAnimation(int i) {
 		currentAction = i;
@@ -396,15 +396,19 @@ public class Player2 extends MapObject {
 			);
 		}
 		
-		/*
+		
 		// update position
-		boolean isFalling = falling;
+		//boolean isFalling = falling;
 		getNextPosition();
 		checkTileMapCollision();
 		setPosition(xtemp, ytemp);
-		if(isFalling && !falling) {
-			//JukeBox.play("Player2lands");
+		
+		/*
+		 	if(isFalling && !falling) {
+			//JukeBox.play("Playerlands");
 		}
+		*/
+		
 		if(dx == 0) x = (int)x;
 		
 		// check done flinching
@@ -414,7 +418,7 @@ public class Player2 extends MapObject {
 				flinching = false;
 			}
 		}
-		*/
+		
 		
 		// energy particles
 		for(int i = 0; i < energyParticles.size(); i++) {

@@ -325,7 +325,10 @@ public class NetherState extends GameState {
 		
 		player2.setWest(Keys.keyState[Keys.WEST]);
 		player2.setEast(Keys.keyState[Keys.EAST]);
+		//player2.setJumping(Keys.keyState[Keys.NORTH]);
+		
 		player2.setNorth(Keys.keyState[Keys.NORTH]);
+		
 		player2.setSouth(Keys.keyState[Keys.SOUTH]);
 
 		player2.setDashing(Keys.keyState[Keys.BUTTON2]);

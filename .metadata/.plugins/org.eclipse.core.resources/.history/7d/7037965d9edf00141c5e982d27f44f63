@@ -121,10 +121,10 @@ public abstract class MapObject {
 		int tr = tileMap.getType(topTile, rightTile);
 		int bl = tileMap.getType(bottomTile, leftTile);
 		int br = tileMap.getType(bottomTile, rightTile);
-		topLeft = tl == Tile.MIDDLE;
-		topRight = tr == Tile.MIDDLE;
-		bottomLeft = bl == Tile.MIDDLE;
-		bottomRight = br == Tile.MIDDLE;
+		topLeft = tl == Tile.BLOCKED;
+		topRight = tr == Tile.BLOCKED;
+		bottomLeft = bl == Tile.BLOCKED;
+		bottomRight = br == Tile.BLOCKED;
 	}
 	
 	public void checkTileMapCollision() {

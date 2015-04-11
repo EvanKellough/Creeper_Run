@@ -52,7 +52,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
 	private boolean recording = false;
 	private int recordingCount = 0;
 	private boolean screenshot;
-	public int cx, cy;
+	private int cx, cy;
 
 		
 		//These two methods get the height and width of the screen
@@ -92,14 +92,15 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
 	}
 	
 	private void init() {
-		Center();
+		
 		image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 		g = (Graphics2D) image.getGraphics();
 		/*g.setRenderingHint(
 			RenderingHints.KEY_TEXT_ANTIALIASING,
 			RenderingHints.VALUE_TEXT_ANTIALIAS_ON
 		);*/
-
+		cx  = ( (SCREENWIDTH() - SCALEDWIDTH) / 2 );
+		cy =  ( (SCREENHEIGHT() - SCALEDHEIGHT) / 2 );
 		
 		running = true;
 		
@@ -107,22 +108,8 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
 		
 	}
 	
-	public void Center(){
-		cx  = ( (SCREENWIDTH() - SCALEDWIDTH) / 2 );
-		cy =  ( (SCREENHEIGHT() - SCALEDHEIGHT) / 2 );
-	}
-	
-	public int getCx (){
-		return cx;
-	}
-	
-	public int getCy (){
-		return cy;
-	}
-	
 	public void run() {
 		init();
-	
 		
 		/* 
 		System.out.println("GAME WIDTH " + WIDTH + " " + HEIGHT);

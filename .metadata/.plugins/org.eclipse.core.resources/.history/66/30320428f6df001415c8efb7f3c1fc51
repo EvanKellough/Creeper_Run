@@ -35,7 +35,7 @@ public class MenuState extends GameState {
 	private Font font3;
 	
 	public MenuState(GameStateManager gsm) {
-		  
+		
 		super(gsm);
 		
 		try {
@@ -67,7 +67,6 @@ public class MenuState extends GameState {
 		
 	}
 	
-	
 	public void init() {}
 	
 	public void update() {
@@ -77,8 +76,7 @@ public class MenuState extends GameState {
 		
 	}
 	
-	public void draw(Graphics2D g) {
-
+	public void draw(Graphics2D g) {	
 		// draw bg
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, GamePanel.WIDTH, GamePanel.HEIGHT);

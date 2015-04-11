@@ -74,7 +74,7 @@ public class TileMap {
 							tileSize,
 							tileSize
 						);
-				tiles[0][col] = new Tile(subimage, Tile.NORMAL);
+				tiles[0][col] = new Tile(subimage, Tile.BACK);
 				subimage = tileset.getSubimage(
 							col * tileSize,
 							tileSize,
@@ -82,7 +82,7 @@ public class TileMap {
 							tileSize
 						);
 						
-				tiles[1][col] = new Tile(subimage, Tile.BLOCKED);
+				tiles[1][col] = new Tile(subimage, Tile.MIDDLE);
 			}
 			
 		}

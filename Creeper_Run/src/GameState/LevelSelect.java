@@ -54,7 +54,7 @@ public class LevelSelect extends GameState {
 			// load minecraft Background
 			minecraft = ImageIO.read(
 				getClass().getResourceAsStream("/Backgrounds/minecraft.png")
-				).getSubimage(0, 300, 400, 300);
+				)/*.getSubimage(0, 300, 400, 300)*/;
 			
 			// load floating head
 			head = ImageIO.read(

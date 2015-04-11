@@ -18,14 +18,9 @@ import Handlers.Keys;
 public class GamePanel extends JPanel implements Runnable, KeyListener{
 	
 	// dimensions
-	/*
+	
 	public static final int WIDTH = 600;
 	public static final int HEIGHT = 350;
-	public static final int SCALE = 1;
-	*/
-	
-	public static final int WIDTH = 320;
-	public static final int HEIGHT = 240;
 	public static final int SCALE = 1;
 	
 	public static final int SCALEDWIDTH = WIDTH * SCALE;
@@ -61,8 +56,8 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
 		}
 		
 		public void centergame(){
-			cx  = ( (SCREENWIDTH() - SCALEDWIDTH) / 2 );
-			cy =  ( (SCREENHEIGHT() - SCALEDHEIGHT) / 2);
+			cx  = (SCREENWIDTH() / 2 - SCALEDWIDTH / 2);
+			cy =  (SCREENHEIGHT() / 2 - SCALEDHEIGHT / 2);
 		}
 		
 		public GamePanel() {
@@ -102,8 +97,8 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
 	public void run() {
 		init();
 		
-		//System.out.println(WIDTH + " " + HEIGHT);
-		System.out.println(cx + " " + cy);
+		System.out.println(WIDTH + " " + HEIGHT);
+		//System.out.println(cx + " " + cy);
 		
 		long start;
 		long elapsed;

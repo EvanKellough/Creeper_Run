@@ -3,6 +3,7 @@ package Main;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.GraphicsEnvironment;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
@@ -17,16 +18,19 @@ import Handlers.Keys;
 @SuppressWarnings("serial")
 public class GamePanel extends JPanel implements Runnable, KeyListener{
 	
+	
 	// dimensions
-	/*
 	public static final int WIDTH = 600;
 	public static final int HEIGHT = 350;
+	public static final int SCALE = 2;
+	
+	/*
+	 //Original Dimensions
+	public static final int WIDTH = SCREENWIDTH;
+	public static final int HEIGHT = SCREENHEIGHT;
 	public static final int SCALE = 1;
 	*/
 	
-	public static final int WIDTH = 320;
-	public static final int HEIGHT = 240;
-	public static final int SCALE = 1;
 	
 	public static final int SCALEDWIDTH = WIDTH * SCALE;
 	public static final int SCALEDHEIGHT = HEIGHT * SCALE;
@@ -60,10 +64,15 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
 		    return java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds().height;
 		}
 		
+		/*
 		public void centergame(){
-			cx  = ( (SCREENWIDTH() - SCALEDWIDTH) / 2 );
-			cy =  ( (SCREENHEIGHT() - SCALEDHEIGHT) / 2);
+			
+			cx  = ( (SCREENWIDTH() - SCALEDWIDTH) );
+			cy =  ( (SCREENHEIGHT() - SCALEDHEIGHT) );
+			
+			
 		}
+		*/
 		
 		public GamePanel() {
 		//setPreferredSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
@@ -84,14 +93,14 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
 	
 	private void init() {
 		
-		//image = new BufferedImage(cx, cy, BufferedImage.TYPE_INT_RGB);
 		image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 		g = (Graphics2D) image.getGraphics();
 		/*g.setRenderingHint(
 			RenderingHints.KEY_TEXT_ANTIALIASING,
 			RenderingHints.VALUE_TEXT_ANTIALIAS_ON
 		);*/
-		
+		cx  = ( (SCREENWIDTH() - SCALEDWIDTH) / 2 );
+		cy =  ( (SCREENHEIGHT() - SCALEDHEIGHT) / 2 );
 		
 		running = true;
 		
@@ -102,8 +111,10 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
 	public void run() {
 		init();
 		
-		//System.out.println(WIDTH + " " + HEIGHT);
-		System.out.println(cx + " " + cy);
+		System.out.println("GAME WIDTH " + WIDTH + " " + HEIGHT);
+		System.out.println("SCREEN WIDTH " + SCREENWIDTH() + " " + SCREENHEIGHT());
+		System.out.println("SCALED WIDTH " + SCALEDWIDTH + " " + SCALEDHEIGHT);
+		System.out.println("CENTERED POINT " + cx + " " + cy);
 		
 		long start;
 		long elapsed;
@@ -143,7 +154,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
 	}
 	private void drawToScreen() {
 		Graphics g2 = getGraphics();
-		g2.drawImage(image, 0, 0, SCALEDWIDTH, SCALEDHEIGHT, null);
+		g2.drawImage(image, cx, cy, SCALEDWIDTH, SCALEDHEIGHT, null);
 		g2.dispose();
 	}
 	

@@ -6,6 +6,7 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
+import java.awt.Toolkit;
 
 import javax.swing.JPanel;
 
@@ -17,9 +18,13 @@ import Handlers.Keys;
 public class GamePanel extends JPanel implements Runnable, KeyListener{
 	
 	// dimensions
-	public static final int WIDTH = 320;
-	public static final int HEIGHT = 240;
-	public static final int SCALE = 2;
+	
+	public static final int WIDTH = 600;
+	public static final int HEIGHT = 350;
+	public static final int SCALE = 1;
+	
+	public static final int SCALEDWIDTH = WIDTH * SCALE;
+	public static final int SCALEDHEIGHT = HEIGHT * SCALE;
 	
 	// game thread
 	private Thread thread;
@@ -38,12 +43,29 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
 	private boolean recording = false;
 	private int recordingCount = 0;
 	private boolean screenshot;
-	
-	public GamePanel() {
-		super();
-		setPreferredSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
+	private int cx, cy;
+
+		
+		//These two methods get the height and width of the screen
+		public static int SCREENWIDTH() {
+		    return java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds().width;
+		}
+
+		public static int SCREENHEIGHT() {
+		    return java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds().height;
+		}
+		
+		public void centergame(){
+			cx  = (SCREENWIDTH() / 2 - SCALEDWIDTH / 2);
+			cy =  (SCREENHEIGHT() / 2 - SCALEDHEIGHT / 2);
+		}
+		
+		public GamePanel() {
+		//setPreferredSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
+		setPreferredSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize())); //sets panel to size of screen
 		setFocusable(true);
 		requestFocus();
+		
 	}
 	
 	public void addNotify() {
@@ -57,6 +79,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
 	
 	private void init() {
 		
+		//image = new BufferedImage(cx, cy, BufferedImage.TYPE_INT_RGB);
 		image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 		g = (Graphics2D) image.getGraphics();
 		/*g.setRenderingHint(
@@ -73,6 +96,9 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
 	
 	public void run() {
 		init();
+		
+		System.out.println(WIDTH + " " + HEIGHT);
+		//System.out.println(cx + " " + cy);
 		
 		long start;
 		long elapsed;
@@ -112,23 +138,8 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
 	}
 	private void drawToScreen() {
 		Graphics g2 = getGraphics();
-		g2.drawImage(image, 0, 0, WIDTH * SCALE, HEIGHT * SCALE, null);
+		g2.drawImage(image, 0, 0, SCALEDWIDTH, SCALEDHEIGHT, null);
 		g2.dispose();
-		if(screenshot) {
-			screenshot = false;
-			try {
-				java.io.File out = new java.io.File("screenshot " + System.nanoTime() + ".gif");
-				javax.imageio.ImageIO.write(image, "gif", out);
-			}
-			catch(Exception e) {}
-		}
-		if(!recording) return;
-		try {
-			java.io.File out = new java.io.File("C:\\out\\frame" + recordingCount + ".gif");
-			javax.imageio.ImageIO.write(image, "gif", out);
-			recordingCount++;
-		}
-		catch(Exception e) {}
 	}
 	
 	public void keyTyped(KeyEvent key) {}

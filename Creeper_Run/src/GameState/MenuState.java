@@ -15,6 +15,7 @@ import Handlers.Keys;
 import Main.GamePanel;
 import TileMap.Background;
 
+
 public class MenuState extends GameState {
 	
 	private BufferedImage head;
@@ -40,8 +41,8 @@ public class MenuState extends GameState {
 		try {
 			// load minecraft Background
 			minecraft = ImageIO.read(
-				getClass().getResourceAsStream("/Backgrounds/minecraft.png")
-				).getSubimage(0, 300, 400, 300);
+				getClass().getResourceAsStream("/Backgrounds/cave.gif")
+				)/*.getSubimage(0, 300, 400, 300)*/;
 			
 			// load floating head
 			head = ImageIO.read(
@@ -75,11 +76,12 @@ public class MenuState extends GameState {
 		
 	}
 	
-	public void draw(Graphics2D g) {
-		
+	public void draw(Graphics2D g) {	
 		// draw bg
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, GamePanel.WIDTH, GamePanel.HEIGHT);
+		
+		//g.setLocationRelativeTo(null);
 		
 		// draw title
 		g.setColor(titleColor);

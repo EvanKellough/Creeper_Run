@@ -10,7 +10,7 @@ public class Tile {
 	// tile types
 	public static final int BACK = 0; //Behind Player
 	public static final int MIDDLE = 1; //Player cannot walk through
-	public static final int FRONT = 1;
+	public static final int FRONT = 2;
 	
 	public Tile(BufferedImage image, int type) {
 		this.image = image;

@@ -65,13 +65,14 @@ public class NetherState extends GameState {
 		// tilemap
 		tileMap = new TileMap(30);
 		tileMap.loadTiles("/Tilesets/creepertileset.gif");
+		//tileMap.loadMap("/Maps/tests.map");
 		tileMap.loadMap("/Maps/level1b.map");
 		tileMap.setPosition(140, 0);
 		tileMap.setTween(1);
 		
 		// player2
 		player2 = new Player2(tileMap);
-		player2.setPosition(300, 131);
+		player2.setPosition(300, 311);
 		player2.setHealth(PlayerSave.getHealth());
 		player2.setLives(PlayerSave.getLives());
 		player2.setTime(PlayerSave.getTime());

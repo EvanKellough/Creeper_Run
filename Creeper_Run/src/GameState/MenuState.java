@@ -19,7 +19,11 @@ import TileMap.Background;
 public class MenuState extends GameState {
 	
 	private BufferedImage head;
-	private BufferedImage minecraft;
+	private BufferedImage newgame;
+	private BufferedImage quit;
+	private BufferedImage zaino;
+	private BufferedImage logo;
+	private BufferedImage select;
 	
 	private int currentChoice = 0;
 	private String[] options = {
@@ -34,20 +38,34 @@ public class MenuState extends GameState {
 	private Font font2;
 	private Font font3;
 	
+	private int width = GamePanel.WIDTH;
+	private int height = GamePanel.HEIGHT;
+	private int uix = (width / 2) - 82;
+	private int uilogo = (width / 2) - 114;
+	private int uiy = height / 2; //newgame button
+	private int ui1 = uiy + 60; //quit button
+	
 	public MenuState(GameStateManager gsm) {
 		  
 		super(gsm);
 		
 		try {
-			// load minecraft Background
-			minecraft = ImageIO.read(
-				getClass().getResourceAsStream("/Backgrounds/cave.gif")
+			// load zaino Background
+			zaino = ImageIO.read(
+				getClass().getResourceAsStream("/Backgrounds/background_high.gif")
 				)/*.getSubimage(0, 300, 400, 300)*/;
 			
-			// load floating head
-			head = ImageIO.read(
-				getClass().getResourceAsStream("/HUD/Hud.gif")
-			).getSubimage(0, 12, 12, 11);
+			newgame = ImageIO.read(
+					getClass().getResourceAsStream("/interface/newgame.gif"));
+			
+			quit = ImageIO.read(
+					getClass().getResourceAsStream("/interface/quit.gif"));
+			
+			logo = ImageIO.read(
+					getClass().getResourceAsStream("/HUD/logo.gif"));
+			
+			select = ImageIO.read(
+					getClass().getResourceAsStream("/interface/optionselect.gif"));
 			
 			// titles and fonts
 			titleColor = Color.WHITE;
@@ -78,9 +96,9 @@ public class MenuState extends GameState {
 	}
 	
 	public void draw(Graphics2D g) {
-
+		
 		// draw bg
-		g.setColor(Color.BLACK);
+		g.setColor(Color.GREEN);
 		g.fillRect(0, 0, GamePanel.WIDTH, GamePanel.HEIGHT);
 		
 		//g.setLocationRelativeTo(null);
@@ -88,24 +106,23 @@ public class MenuState extends GameState {
 		// draw title
 		g.setColor(titleColor);
 		g.setFont(titleFont);
-		g.drawImage(minecraft, 0, 0, null);
-		g.drawString("C R E E P E R   R U N", 30, 60); //Title
-		g.setFont(font3);
-		g.drawString("The untold story of the humble creeper.. Alpha Version 1.1", 5, 198); //Title
-		g.drawString("Move: WASD/ Explode:Space / Bite:R / Hit Enter To Start", 5, 215); //Title
-		g.setFont(font3);
-		g.drawString("Created by Evan Kellough aka Chief Owl the Quasi God", 5, 232);
+		g.drawImage(zaino, 0, 0, null);
 		
-		// draw menu options
-		g.setFont(font);
-		g.setColor(Color.WHITE);
-		g.drawString("New World", 145, 95);
-		g.drawString("Quit", 145, 115);
-		//g.drawString("Level Select", 145, 135);
-		
+		/*
 		// draw floating head
 		if(currentChoice == 0) g.drawImage(head, 125, 84, null);
 		else if(currentChoice == 1) g.drawImage(head, 125, 104, null);
+		*/
+		
+		g.drawImage(logo, uilogo, 10, null);
+		g.drawImage(newgame, uix, uiy, null);
+		g.drawImage(quit, uix, ui1, null);
+
+		//highlights buttons
+		if(currentChoice == 0) g.drawImage(select, uix, uiy, null);
+		if(currentChoice == 1) g.drawImage(select, uix, ui1, null);
+		
+		
 		
 	}
 	
@@ -137,13 +154,3 @@ public class MenuState extends GameState {
 	}
 	
 }
-
-
-
-
-
-
-
-
-
-

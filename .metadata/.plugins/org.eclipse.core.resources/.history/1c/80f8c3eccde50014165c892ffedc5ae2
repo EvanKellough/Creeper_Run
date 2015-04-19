@@ -1,0 +1,176 @@
+package GameState;
+
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+
+
+//import javax.imageio.ImageI[[andlers.Keys;
+import javax.imageio.ImageIO;
+
+
+
+
+
+//import Audio.JukeBox;
+import Entity.PlayerSave;
+import Handlers.Keys;
+import Main.GamePanel;
+import TileMap.Background;
+import Entity.Player;
+
+public class Loading extends GameState {
+
+	
+	private Color titleColor;
+	private Font titleFont;
+	
+	private boolean running;
+	private long time;
+	
+	private int currentChoice = 0;
+	private String[] options = {
+		"Start",
+		"Quit"
+	};
+	
+	private int width = GamePanel.WIDTH;
+	private int height = GamePanel.HEIGHT;
+	private int uix = (width / 2) - 82;
+	private int uilogo = (width / 2) - 114;
+	private int uiy = height / 2; //newgame button
+	private int ui1 = uiy + 60; //quit button
+	
+	private BufferedImage logo;
+	private BufferedImage zaino;
+	
+	public Loading(GameStateManager gsm) {
+		  
+		super(gsm);
+		
+		try {
+			// load zaino Background
+			zaino = ImageIO.read(
+				getClass().getResourceAsStream("/Backgrounds/background_high.gif")
+				)/*.getSubimage(0, 300, 400, 300)*/;
+			
+			logo = ImageIO.read(
+					getClass().getResourceAsStream("/HUD/logo.gif"));
+			
+			// load sound fx
+			//JukeBox.load("/SFX/sample1.aif", "menuoption");
+			//JukeBox.load("/SFX/sample1.aif", "menuselect");
+
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	//loading screen transitions after 5 seconds
+	private int gettime(){
+		int seconds = (int) ((time % 3600) / 60);
+		if (seconds == 5){
+			gsm.setState(GameStateManager.MENUSTATE);
+		}
+		else{
+			return seconds;
+		}
+	}
+	
+	public void init() {
+		running = true;
+	}
+	
+	public void update() {
+		
+		// check keys
+		handleInput();
+		
+	}
+	
+	public void draw(Graphics2D g) {
+		
+		//g.setLocationRelativeTo(null);
+		
+		// draw title
+		g.drawImage(zaino, 0, 0, null);
+		g.drawImage(logo, uilogo, uiy, null);
+		
+		g.setColor(Color.RED);
+		g.fillRect(0, 0, GamePanel.WIDTH, GamePanel.HEIGHT);
+		
+		/*
+		// draw floating head
+		if(currentChoice == 0) g.drawImage(head, 125, 84, null);
+		else if(currentChoice == 1) g.drawImage(head, 125, 104, null);
+		*/
+
+		running = true;
+		
+		
+	}
+	
+	public void run() {
+		init();
+	
+		
+		/* 
+		System.out.println("GAME WIDTH " + WIDTH + " " + HEIGHT);
+		System.out.println("SCREEN WIDTH " + SCREENWIDTH() + " " + SCREENHEIGHT());
+		System.out.println("SCALED WIDTH " + SCALEDWIDTH + " " + SCALEDHEIGHT);
+		System.out.println("CENTERED POINT " + cx + " " + cy);
+		*/
+		
+		long start;
+		long elapsed;
+		long wait;
+		
+		// game loop
+		while(running) {
+			
+			start = System.nanoTime();
+			
+			update();
+			
+			elapsed = System.nanoTime() - start;
+			System.out.println(elapsed);
+			
+			if(elapsed == 5){
+				gsm.setState(GameStateManager.MENUSTATE);
+			}
+			
+		}
+		
+	}
+	
+	private void select() {
+		if(currentChoice == 0) {
+			//JukeBox.play("menuselect");
+			PlayerSave.init();
+			gsm.setState(GameStateManager.MENUSTATE);
+		}
+		else if(currentChoice == 1) {
+			System.exit(0);
+		}
+	}
+	
+	public void handleInput() {
+		if(Keys.isPressed(Keys.ENTER)) select();
+		
+	}
+	
+}
+
+
+
+
+
+
+
+
+
+

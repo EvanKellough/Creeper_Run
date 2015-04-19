@@ -64,7 +64,7 @@ public class TileMap {
 				getClass().getResourceAsStream(s)
 			);
 			numTilesAcross = tileset.getWidth() / tileSize;
-			tiles = new Tile[2][numTilesAcross];
+			tiles = new Tile[3][numTilesAcross];
 			
 			BufferedImage subimage;
 			for(int col = 0; col < numTilesAcross; col++) {
@@ -83,6 +83,8 @@ public class TileMap {
 						);
 						
 				tiles[1][col] = new Tile(subimage, Tile.MIDDLE);
+				
+				tiles[2][col] = new Tile(subimage, Tile.FRONT);
 			}
 			
 		}
@@ -199,31 +201,8 @@ public class TileMap {
 					(int)x + col * tileSize,
 					(int)y + row * tileSize,
 					null
-				);
-				
-			}
-			
-		}
-		
+				);	
+			}	
+		}	
 	}
-	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

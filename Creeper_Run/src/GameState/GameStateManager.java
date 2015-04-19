@@ -38,13 +38,15 @@ public class GameStateManager {
 		pauseState = new PauseState(this);
 		paused = false;
 		
-		currentState = MENUSTATE;
+		currentState = LOADSTATE;
 		loadState(currentState);
 		
 	}
 	
 	private void loadState(int state) {
-		if(state == MENUSTATE)
+		if(state == LOADSTATE)
+			gameStates[state] = new Loading(this);
+		else if(state == MENUSTATE)
 			gameStates[state] = new MenuState(this);
 		else if(state == LEVELSELECT)
 			gameStates[state] = new LevelSelect(this);

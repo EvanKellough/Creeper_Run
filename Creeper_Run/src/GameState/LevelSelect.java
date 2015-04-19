@@ -17,25 +17,26 @@ import TileMap.Background;
 
 public class LevelSelect extends GameState {
 	
-	private BufferedImage head;
-	private BufferedImage minecraft;
+	private BufferedImage sidescroller;
+	private BufferedImage topdown;
+	private BufferedImage quit;
+	private BufferedImage background;
+	private BufferedImage select;
 	
 	private int currentChoice = 0;
 	private String[] options = {
 		"Side Scroller",
 		"Top Down",
 		"Quit"
-		/*"Boss Battle",
-		"Level 3",
-		"Level 4",
-		"Level 5",
-		"Level 6",
-		"Level 7",
-		"Level 8",
-		"Level 9",
-		"Quit"
-		*/
 	};
+	
+	//centering the UI
+	private int width = GamePanel.WIDTH;
+	private int height = GamePanel.HEIGHT;
+	private int uix = (width / 2) - 82;
+	private int uiy = height / 3; //sidescroller button
+	private int ui1 = uiy + 60; //topdown button
+	private int ui2 = ui1 + 60; //quit button
 	
 	private Color titleColor;
 	private Font titleFont;
@@ -51,25 +52,27 @@ public class LevelSelect extends GameState {
 		super(gsm);
 		
 		try {
-			// load minecraft Background
-			minecraft = ImageIO.read(
-				getClass().getResourceAsStream("/Backgrounds/minecraft.png")
+			// load Background
+			background = ImageIO.read(
+				getClass().getResourceAsStream("/Backgrounds/background_high.gif")
 				)/*.getSubimage(0, 300, 400, 300)*/;
 			
-			// load floating head
-			head = ImageIO.read(
-				getClass().getResourceAsStream("/HUD/Hud.gif")
-			).getSubimage(0, 12, 12, 11);
+			// loading the UI
+			sidescroller = ImageIO.read(
+				getClass().getResourceAsStream("/interface/sidescroller.gif")
+			);
 			
-			// titles and fonts
-			titleColor = Color.WHITE;
-			titleFont = new Font("Times New Roman", Font.PLAIN, 28);
-			controlColor = Color.WHITE;
-			controlFont = new Font("Times New Roman", Font.PLAIN, 18);
+			topdown = ImageIO.read(
+					getClass().getResourceAsStream("/interface/topdown.gif")
+				);
 			
-			font = new Font("Arial", Font.PLAIN, 14);
-			font2 = new Font("Arial", Font.PLAIN, 10);
-			font3 = new Font("Arial", Font.PLAIN, 12);
+			quit = ImageIO.read(
+					getClass().getResourceAsStream("/interface/quit.gif")
+				);
+			
+			select = ImageIO.read(
+					getClass().getResourceAsStream("/interface/optionselect.gif")
+				);
 			
 			// load sound fx
 			//JukeBox.load("/SFX/menuoption.mp3", "menuoption");
@@ -96,51 +99,16 @@ public class LevelSelect extends GameState {
 		// draw bg
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, GamePanel.WIDTH, GamePanel.HEIGHT);
+
+		g.drawImage(background, 0, 0, null); //background
+		g.drawImage(sidescroller, uix, uiy, null); //side scroller button
+		g.drawImage(topdown, uix, ui1, null); //topdown button
+		g.drawImage(quit, uix, ui2, null); //quit button
 		
-		// draw title
-		g.setColor(titleColor);
-		g.setFont(titleFont);
-		g.drawImage(minecraft, 0, 0, null);
-		g.drawString("Tests", 130, 20); //Title
-		
-		// draw menu options
-		g.setFont(font);
-		g.setColor(Color.WHITE);
-		g.drawString("Side Scroller", 145, 115);
-		g.drawString("Top Down", 145, 135);
-		g.drawString("Quit", 145, 155);
-		/*
-		g.drawString("The Beginning", 145, 35);
-		g.drawString("Nether", 145, 55);
-		g.drawString("Human House", 145, 75);
-		g.drawString("Level 4 (Coming Soon)", 145,95);
-		g.drawString("Level 5 (Coming Soon)", 145, 115);
-		g.drawString("Level 6 (Coming Soon)", 145, 135);
-		g.drawString("Level 7 (Coming Soon)", 145, 155);
-		g.drawString("Level 8 (Coming Soon)", 145, 175);
-		g.drawString("Level 9 (Coming Soon)", 145, 195);
-		g.drawString("Level 10 (Coming Soon)", 145, 215);
-		g.drawString("Quit", 145, 235);
-*/
-		// draw floating head
-		if(currentChoice == 0) g.drawImage(head, 125, 104, null);
-		else if(currentChoice == 1) g.drawImage(head, 125, 124, null);
-		else if(currentChoice == 2) g.drawImage(head, 125, 144, null);
-		/*
-		if(currentChoice == 0) g.drawImage(head, 125, 24, null);
-		else if(currentChoice == 1) g.drawImage(head, 125, 44, null);
-		else if(currentChoice == 2) g.drawImage(head, 125, 64, null);
-		else if(currentChoice == 3) g.drawImage(head, 125, 84, null);
-		else if(currentChoice == 4) g.drawImage(head, 125, 104, null);
-		else if(currentChoice == 5) g.drawImage(head, 125, 124, null);
-		else if(currentChoice == 6) g.drawImage(head, 125, 144, null);
-		else if(currentChoice == 7) g.drawImage(head, 125, 164, null);
-		else if(currentChoice == 8) g.drawImage(head, 125, 184, null);
-		else if(currentChoice == 9) g.drawImage(head, 125, 204, null);
-		else if(currentChoice == 10) g.drawImage(head, 125, 224, null);
-		else if(currentChoice == 11) g.drawImage(head, 125, 244, null);
-		//else if(currentChoice == 12) g.drawImage(head, 125, 264, null);
-		 */
+		//highlights buttons
+		if(currentChoice == 0) g.drawImage(select, uix, uiy, null);//side scroller button
+		if(currentChoice == 1) g.drawImage(select, uix, ui1, null); //topdown button
+		if(currentChoice == 2) g.drawImage(select, uix, ui2, null); //quit button
 	}
 	
 	private void select() {

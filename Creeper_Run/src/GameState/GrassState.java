@@ -62,7 +62,7 @@ public class GrassState extends GameState {
 		
 		// tilemap
 		tileMap = new TileMap(30);
-		tileMap.loadTiles("/Tilesets/grasstileset.gif");
+		tileMap.loadTiles("/Tilesets/creepertileset.gif");
 		tileMap.loadMap("/Maps/level1a.map");
 		tileMap.setPosition(140, 0);
 		tileMap.setBounds(

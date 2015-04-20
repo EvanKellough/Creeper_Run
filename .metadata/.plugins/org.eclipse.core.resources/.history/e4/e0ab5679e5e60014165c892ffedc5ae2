@@ -1,0 +1,20 @@
+package Entity;
+
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+
+public class SaveGame {
+	
+	public static void main (String[]args){
+		String filename = "SaveGame.rtf";
+				try{
+					PrintWriter outputStream = new PrintWriter(filename);
+					outputStream.println("Hi there file!"); //stores file in RAM
+					outputStream.close(); //flushes data from RAM to file
+					System.out.println("Player Game Saved");
+				}catch (FileNotFoundException e){
+					e.printStackTrace();
+				}
+		
+	}
+}

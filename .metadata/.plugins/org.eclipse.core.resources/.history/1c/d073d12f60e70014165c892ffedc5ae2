@@ -123,6 +123,7 @@ public class LevelSelect extends GameState {
 			//JukeBox.play("menuselect");
 			PlayerSave.init();
 			gsm.setState(GameStateManager.NETHERSTATE);
+			RandomMap;
 		}
 		else if(currentChoice == 2) {
 			System.exit(0);

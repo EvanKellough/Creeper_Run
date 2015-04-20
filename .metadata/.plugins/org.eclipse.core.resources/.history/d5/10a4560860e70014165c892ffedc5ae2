@@ -8,7 +8,7 @@ public class RandomMap {
 	
 	public static void main(String[]args){
 		Random randomGenerator = new Random();
-		String filename = "random_map.map";
+		String filename = "random_map.txt";
 		final int colmax = 64;
 		final int rowmax = 64;
 		

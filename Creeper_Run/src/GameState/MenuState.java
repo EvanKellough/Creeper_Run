@@ -10,7 +10,7 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 
 //import Audio.JukeBox;
-import Entity.PlayerSave;
+import Entity.NewPlayerSaveInfo;
 import Handlers.Keys;
 import Main.GamePanel;
 import TileMap.Background;
@@ -24,10 +24,12 @@ public class MenuState extends GameState {
 	private BufferedImage zaino;
 	private BufferedImage logo;
 	private BufferedImage select;
+	private BufferedImage demos;
 	
 	private int currentChoice = 0;
 	private String[] options = {
-		"Start",
+		"New Game",
+		"Demos",
 		"Quit"
 	};
 	
@@ -43,7 +45,8 @@ public class MenuState extends GameState {
 	private int uix = (width / 2) - 82;
 	private int uilogo = (width / 2) - 114;
 	private int uiy = height / 2; //newgame button
-	private int ui1 = uiy + 60; //quit button
+	private int ui1 = uiy + 60; //demo button
+	private int ui2 = ui1 + 60; //quit button
 	
 	public MenuState(GameStateManager gsm) {
 		  
@@ -66,6 +69,9 @@ public class MenuState extends GameState {
 			
 			select = ImageIO.read(
 					getClass().getResourceAsStream("/interface/optionselect.gif"));
+			
+			demos = ImageIO.read(
+					getClass().getResourceAsStream("/interface/demos.gif"));
 			
 			// titles and fonts
 			titleColor = Color.WHITE;
@@ -116,11 +122,13 @@ public class MenuState extends GameState {
 		
 		g.drawImage(logo, uilogo, 10, null);
 		g.drawImage(newgame, uix, uiy, null);
-		g.drawImage(quit, uix, ui1, null);
+		g.drawImage(demos, uix, ui1, null);
+		g.drawImage(quit, uix, ui2, null);
 
 		//highlights buttons
 		if(currentChoice == 0) g.drawImage(select, uix, uiy, null);
 		if(currentChoice == 1) g.drawImage(select, uix, ui1, null);
+		if(currentChoice == 2) g.drawImage(select, uix, ui2, null);
 		
 		
 		
@@ -129,10 +137,13 @@ public class MenuState extends GameState {
 	private void select() {
 		if(currentChoice == 0) {
 			//JukeBox.play("menuselect");
-			PlayerSave.init();
-			gsm.setState(GameStateManager.LEVELSELECT);
+			gsm.setState(GameStateManager.NEWGAMESTATE);
 		}
 		else if(currentChoice == 1) {
+			//JukeBox.play("menuselect");
+			gsm.setState(GameStateManager.LEVELSELECT);
+		}
+		else if(currentChoice == 2) {
 			System.exit(0);
 		}
 	}

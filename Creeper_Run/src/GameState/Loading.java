@@ -10,7 +10,7 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 
 //import Audio.JukeBox;
-import Entity.PlayerSave;
+import Entity.NewPlayerSaveInfo;
 import Handlers.Keys;
 import Main.GamePanel;
 import TileMap.Background;
@@ -108,7 +108,6 @@ public class Loading extends GameState {
 	private void select() {
 		if(currentChoice == 0) {
 			//JukeBox.play("menuselect");
-			PlayerSave.init();
 			gsm.setState(GameStateManager.MENUSTATE);
 		}
 		else if(currentChoice == 1) {

@@ -11,7 +11,7 @@ import javax.imageio.ImageIO;
 
 //import Audio.JukeBox;
 import Main.GamePanel;
-import Entity.PlayerSave;
+import Entity.NewPlayerSaveInfo;
 import Entity.RandomMap;
 import Handlers.Keys;
 import TileMap.Background;
@@ -116,12 +116,12 @@ public class LevelSelect extends GameState {
 	private void select() {
 		if(currentChoice == 0) {
 			//JukeBox.play("menuselect");
-			PlayerSave.init();
+			NewPlayerSaveInfo.init();
 			gsm.setState(GameStateManager.CAVESTATE);
 		}
 		else if(currentChoice == 1){
 			//JukeBox.play("menuselect");
-			PlayerSave.init();
+			NewPlayerSaveInfo.init();
 			gsm.setState(GameStateManager.NETHERSTATE);
 		}
 		else if(currentChoice == 2) {

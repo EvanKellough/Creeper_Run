@@ -1,0 +1,5 @@
+package Entity;
+
+public class PlayerSave {
+	//This will load the player's info from the savegame file
+}

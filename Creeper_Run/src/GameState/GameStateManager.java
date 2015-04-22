@@ -28,6 +28,7 @@ public class GameStateManager {
 	public static final int ENDSTATE = 11;
 	public static final int ACIDSTATE = 12;
 	public static final int LOADSTATE = 13;
+	public static final int NEWGAMESTATE = 14;
 	
 	public GameStateManager() {
 		
@@ -48,6 +49,8 @@ public class GameStateManager {
 			gameStates[state] = new Loading(this);
 		else if(state == MENUSTATE)
 			gameStates[state] = new MenuState(this);
+		else if(state == NEWGAMESTATE)
+			gameStates[state] = new NewGameState(this);
 		else if(state == LEVELSELECT)
 			gameStates[state] = new LevelSelect(this);
 		else if(state == GRASSSTATE)

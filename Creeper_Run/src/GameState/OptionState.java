@@ -11,7 +11,7 @@ import javax.imageio.ImageIO;
 
 //import Audio.JukeBox;
 import Main.GamePanel;
-import Entity.PlayerSave;
+import Entity.NewPlayerSaveInfo;
 import Handlers.Keys;
 import TileMap.Background;
 
@@ -119,7 +119,7 @@ public class OptionState extends GameState {
 	private void select() {
 		if(currentChoice == 0) {
 			//JukeBox.play("menuselect");
-			PlayerSave.init();
+			NewPlayerSaveInfo.init();
 			gsm.setState(GameStateManager.MENUSTATE);
 		}
 		else if(currentChoice == 1) {

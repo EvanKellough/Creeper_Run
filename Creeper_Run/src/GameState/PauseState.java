@@ -11,7 +11,7 @@ import javax.imageio.ImageIO;
 
 //import Audio.JukeBox;
 import Main.GamePanel;
-import Entity.PlayerSave;
+import Entity.NewPlayerSaveInfo;
 import Handlers.Keys;
 import TileMap.Background;
 
@@ -23,11 +23,13 @@ public class PauseState extends GameState {
 	private BufferedImage quit;
 	private BufferedImage background;
 	private BufferedImage select;
+	private BufferedImage save;
 	
 	private int currentChoice = 0;
 	private String[] choices = {
 		"Menu",
 		"Options",
+		"Save",
 		"Quit"
 	};
 	
@@ -35,9 +37,10 @@ public class PauseState extends GameState {
 	private int width = GamePanel.WIDTH;
 	private int height = GamePanel.HEIGHT;
 	private int uix = (width / 2) - 82;
-	private int uiy = height / 3; //sidescroller button
+	private int uiy = height / 4; //sidescroller button
 	private int ui1 = uiy + 60; //topdown button
-	private int ui2 = ui1 + 60; //quit button
+	private int ui2 = ui1 + 60; //save button
+	private int ui3 = ui2 + 60; //quit button
 	
 	private Color titleColor;
 	private Font titleFont;
@@ -65,6 +68,10 @@ public class PauseState extends GameState {
 			
 			options = ImageIO.read(
 					getClass().getResourceAsStream("/interface/options.gif")
+				);
+			
+			save = ImageIO.read(
+					getClass().getResourceAsStream("/interface/save.gif")
 				);
 			
 			quit = ImageIO.read(
@@ -104,24 +111,30 @@ public class PauseState extends GameState {
 		g.drawImage(background, 0, 0, null); //background
 		g.drawImage(menu, uix, uiy, null); //side scroller button
 		g.drawImage(options, uix, ui1, null); //topdown button
-		g.drawImage(quit, uix, ui2, null); //quit button
+		g.drawImage(save, uix, ui2, null); //topdown button
+		g.drawImage(quit, uix, ui3, null); //quit button
 		
 		//highlights buttons
 		if(currentChoice == 0) g.drawImage(select, uix, uiy, null);//side scroller button
 		if(currentChoice == 1) g.drawImage(select, uix, ui1, null); //topdown button
-		if(currentChoice == 2) g.drawImage(select, uix, ui2, null); //quit button
+		if(currentChoice == 2) g.drawImage(select, uix, ui2, null); //save button
+		if(currentChoice == 3) g.drawImage(select, uix, ui3, null); //quit button
 	}
 	
 	private void select() {
 		if(currentChoice == 0) {
 			//JukeBox.play("menuselect");
-			PlayerSave.init();
 			gsm.setState(GameStateManager.MENUSTATE);
 		}
 		else if(currentChoice == 1) {
 			System.exit(0);
 		}
-		else if(currentChoice == 2) {
+		if(currentChoice == 2) {
+			//JukeBox.play("menuselect");
+			NewPlayerSaveInfo.init();
+			gsm.setState(GameStateManager.MENUSTATE);
+		}
+		else if(currentChoice == 3) {
 			System.exit(0);
 		}
 

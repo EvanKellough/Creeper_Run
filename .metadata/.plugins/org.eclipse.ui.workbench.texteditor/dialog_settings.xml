@@ -13,26 +13,26 @@
 		<item value="false" key="isRegEx"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value=" 0 " key="selection"/>
+		<item value="testFile" key="selection"/>
 		<list key="findhistory">
+			<item value="testFile"/>
+			<item value="setContents"/>
+			<item value="getContents"/>
+			<item value="LevelSelect"/>
 			<item value=" 0 "/>
 			<item value="player"/>
 			<item value="pla"/>
 			<item value="HUD"/>
-			<item value="lives"/>
-			<item value="PauseState"/>
-			<item value="type"/>
-			<item value="tile"/>
 		</list>
 		<list key="replacehistory">
+			<item value="Write"/>
+			<item value="Read"/>
+			<item value="NewGameState"/>
 			<item value="player2"/>
 			<item value="HUD2"/>
 			<item value="health"/>
 			<item value="OptionState"/>
 			<item value=" "/>
-			<item value=""/>
-			<item value="PauseState"/>
-			<item value="Loading"/>
 		</list>
 	</section>
 </section>

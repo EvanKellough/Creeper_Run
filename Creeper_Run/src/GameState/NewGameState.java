@@ -130,7 +130,7 @@ public class NewGameState extends GameState {
 		}
 		else if(currentChoice == 1){
 			//JukeBox.play("menuselect");
-			LoadGame.init();
+			//LoadGame.init();
 			gsm.setState(GameStateManager.NETHERSTATE);
 		}
 		else if(currentChoice == 2) {

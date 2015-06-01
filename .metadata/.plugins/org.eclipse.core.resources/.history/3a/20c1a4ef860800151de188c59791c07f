@@ -334,7 +334,6 @@ public class NetherState extends GameState {
 
 		player2.setDashing(Keys.keyState[Keys.BUTTON2]);
 		if(Keys.isPressed(Keys.BUTTON3)) player2.setAttacking();
-		if(Keys.isPressed(Keys.MAP)) gsm.setState(GameStateManager.MAPSTATE);
 		if(Keys.isPressed(Keys.BUTTON4)) player2.setCharging();
 	}
 

@@ -25,7 +25,6 @@ public class Keys {
 	public static int ESCAPE = 9; //pause
 	public static int MUTE = 10; //mute soundtrack
 	public static int SOUTH = 11; //down
-	public static int MAP = 12; //Map Button
 	
 	public static void keySet(int i, boolean b) {
 		if(i == KeyEvent.VK_UP) keyState[UP] = b; //MENU UP
@@ -40,7 +39,6 @@ public class Keys {
 		else if(i == KeyEvent.VK_ENTER) keyState[ENTER] = b; //SELECT
 		else if(i == KeyEvent.VK_ESCAPE) keyState[ESCAPE] = b; //PAUSE
 		else if(i == KeyEvent.VK_M) keyState[MUTE] = b; //MUTE SOUNDTRACK
-		else if(i == KeyEvent.VK_Q) keyState[MAP] = b; //Map Button
 	}
 	
 	public static void update() {

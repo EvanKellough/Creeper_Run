@@ -215,6 +215,7 @@ public class Player extends MapObject {
 		int seconds = (int) ((time % 3600) / 60);
 		return seconds < 10 ? minutes + ":0" + seconds : minutes + ":" + seconds;
 	}
+	
 	public long getTime() { return time; }
 	public void setTime(long t) { time = t; }
 	public void setHealth(int i) { health = i; }

@@ -14,7 +14,7 @@ public class Game {
 	
 	public static void main(String[] args){
 		
-		JFrame window = new JFrame("Creeper Run");
+		JFrame window = new JFrame("Zaino");
 		window.setIconImage(Toolkit.getDefaultToolkit().getImage("/Sprites/Player/Icon.gif"));
 		window.add(new GamePanel());
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -23,5 +23,4 @@ public class Game {
 		window.setLocationRelativeTo(null);
 		window.setVisible(true);
 	}
-	
 }

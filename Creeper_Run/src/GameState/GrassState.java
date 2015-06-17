@@ -12,7 +12,7 @@ import Entity.EnergyParticle;
 import Entity.Explosion;
 import Entity.HUD;
 import Entity.Player;
-import Entity.PlayerSave;
+import Entity.NewPlayerSaveInfo;
 import Entity.Teleport;
 import Entity.Title;
 import Entity.Enemies.GelPop;
@@ -62,7 +62,7 @@ public class GrassState extends GameState {
 		
 		// tilemap
 		tileMap = new TileMap(30);
-		tileMap.loadTiles("/Tilesets/grasstileset.gif");
+		tileMap.loadTiles("/Tilesets/creepertileset.gif");
 		tileMap.loadMap("/Maps/level1a.map");
 		tileMap.setPosition(140, 0);
 		tileMap.setBounds(
@@ -76,9 +76,9 @@ public class GrassState extends GameState {
 		player = new Player(tileMap);
 		// Top of Mountain spawn - player.setPosition(11376, 96);
 		player.setPosition(512, 1552);
-		player.setHealth(PlayerSave.getHealth());
-		player.setLives(PlayerSave.getLives());
-		player.setTime(PlayerSave.getTime());
+		player.setHealth(NewPlayerSaveInfo.getHealth());
+		player.setLives(NewPlayerSaveInfo.getLives());
+		player.setTime(NewPlayerSaveInfo.getTime());
 		
 		// enemies
 		enemies = new ArrayList<Enemy>();
@@ -384,9 +384,9 @@ public class GrassState extends GameState {
 			//JukeBox.stop("level1");
 		}
 		if(eventCount == 180) {
-			PlayerSave.setHealth(player.getHealth());
-			PlayerSave.setLives(player.getLives());
-			PlayerSave.setTime(player.getTime());
+			NewPlayerSaveInfo.setHealth(player.getHealth());
+			NewPlayerSaveInfo.setLives(player.getLives());
+			NewPlayerSaveInfo.setTime(player.getTime());
 			gsm.setState(GameStateManager.NETHERSTATE);
 			//JukeBox.stop("level1");
 		}

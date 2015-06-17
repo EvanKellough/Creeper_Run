@@ -15,7 +15,7 @@ import Entity.Explosion;
 import Entity.HUD2;
 import Entity.Player2;
 import Entity.Player;
-import Entity.PlayerSave;
+import Entity.NewPlayerSaveInfo;
 import Entity.Teleport;
 import Entity.Title;
 //import Entity.Enemy.Gazer;
@@ -66,15 +66,16 @@ public class NetherState extends GameState {
 		tileMap = new TileMap(30);
 		tileMap.loadTiles("/Tilesets/creepertileset.gif");
 		tileMap.loadMap("/Maps/level1b.map");
+		//tileMap.loadMap("/Maps/level1b.map");
 		tileMap.setPosition(140, 0);
 		tileMap.setTween(1);
 		
 		// player2
 		player2 = new Player2(tileMap);
-		player2.setPosition(300, 131);
-		player2.setHealth(PlayerSave.getHealth());
-		player2.setLives(PlayerSave.getLives());
-		player2.setTime(PlayerSave.getTime());
+		player2.setPosition(300, 311);
+		player2.setHealth(NewPlayerSaveInfo.getHealth());
+		player2.setLives(NewPlayerSaveInfo.getLives());
+		player2.setTime(NewPlayerSaveInfo.getTime());
 		
 		// enemies
 		enemies = new ArrayList<Enemy>();
@@ -333,6 +334,7 @@ public class NetherState extends GameState {
 
 		player2.setDashing(Keys.keyState[Keys.BUTTON2]);
 		if(Keys.isPressed(Keys.BUTTON3)) player2.setAttacking();
+		if(Keys.isPressed(Keys.MAP)) gsm.setState(GameStateManager.MAPSTATE);
 		if(Keys.isPressed(Keys.BUTTON4)) player2.setCharging();
 	}
 
@@ -452,9 +454,9 @@ public class NetherState extends GameState {
 			JukeBox.stop("level2");*/
 		}
 		if(eventCount == 180) {
-			PlayerSave.setHealth(player2.getHealth());
-			PlayerSave.setLives(player2.getLives());
-			PlayerSave.setTime(player2.getTime());
+			NewPlayerSaveInfo.setHealth(player2.getHealth());
+			NewPlayerSaveInfo.setLives(player2.getLives());
+			NewPlayerSaveInfo.setTime(player2.getTime());
 			gsm.setState(GameStateManager.CAVESTATE);
 			//JukeBox.stop("level2");
 		}

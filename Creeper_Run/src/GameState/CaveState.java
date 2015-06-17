@@ -14,7 +14,7 @@ import Entity.EnergyParticle;
 import Entity.Explosion;
 import Entity.HUD;
 import Entity.Player;
-import Entity.PlayerSave;
+import Entity.NewPlayerSaveInfo;
 import Entity.Teleport;
 import Entity.Title;
 import Entity.Enemies.GelPop;
@@ -70,9 +70,9 @@ public class CaveState extends GameState {
 		// player
 		player = new Player(tileMap);
 		player.setPosition(480, 1550);
-		player.setHealth(PlayerSave.getHealth());
-		player.setLives(PlayerSave.getLives());
-		player.setTime(PlayerSave.getTime());
+		player.setHealth(NewPlayerSaveInfo.getHealth());
+		player.setLives(NewPlayerSaveInfo.getLives());
+		player.setTime(NewPlayerSaveInfo.getTime());
 		
 		// enemies
 		enemies = new ArrayList<Enemy>();
@@ -454,9 +454,9 @@ public class CaveState extends GameState {
 			JukeBox.stop("level3");*/
 		}
 		if(eventCount == 180) {
-			PlayerSave.setHealth(player.getHealth());
-			PlayerSave.setLives(player.getLives());
-			PlayerSave.setTime(player.getTime());
+			NewPlayerSaveInfo.setHealth(player.getHealth());
+			NewPlayerSaveInfo.setLives(player.getLives());
+			NewPlayerSaveInfo.setTime(player.getTime());
 			gsm.setState(GameStateManager.FORESTSTATE);
 			//JukeBox.stop("level3");
 		}

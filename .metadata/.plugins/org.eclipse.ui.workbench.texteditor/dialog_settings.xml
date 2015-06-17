@@ -2,37 +2,37 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="265" key="DIALOG_WIDTH"/>
-		<item value="68" key="DIALOG_Y_ORIGIN"/>
+		<item value="165" key="DIALOG_Y_ORIGIN"/>
+		<item value="887" key="DIALOG_X_ORIGIN"/>
 		<item value="399" key="DIALOG_HEIGHT"/>
-		<item value="929" key="DIALOG_X_ORIGIN"/>
 		<item value="1|.Helvetica Neue DeskInterface|11.0|0|COCOA|1|.HelveticaNeueDeskInterface-Regular" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="true" key="wrap"/>
+		<item value="true" key="casesensitive"/>
 		<item value="false" key="isRegEx"/>
-		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="MIDDLE" key="selection"/>
+		<item value="testFile" key="selection"/>
 		<list key="findhistory">
-			<item value="NORMAL"/>
-			<item value="BLOCKED"/>
-			<item value="facingRight"/>
-			<item value="jump"/>
-			<item value="11"/>
-			<item value="creeper"/>
-			<item value="falling"/>
-			<item value="setjump"/>
+			<item value="testFile"/>
+			<item value="setContents"/>
+			<item value="getContents"/>
+			<item value="LevelSelect"/>
+			<item value=" 0 "/>
+			<item value="player"/>
+			<item value="pla"/>
+			<item value="HUD"/>
 		</list>
 		<list key="replacehistory">
-			<item value="BACK"/>
-			<item value="MIDDLE"/>
-			<item value="0"/>
-			<item value="HUD2"/>
+			<item value="Write"/>
+			<item value="Read"/>
+			<item value="NewGameState"/>
 			<item value="player2"/>
-			<item value="Player2"/>
-			<item value="east"/>
-			<item value="west"/>
+			<item value="HUD2"/>
+			<item value="health"/>
+			<item value="OptionState"/>
+			<item value=" "/>
 		</list>
 	</section>
 </section>

@@ -28,6 +28,8 @@ public class GameStateManager {
 	public static final int ENDSTATE = 11;
 	public static final int ACIDSTATE = 12;
 	public static final int LOADSTATE = 13;
+	public static final int NEWGAMESTATE = 14;
+	public static final int MAPSTATE = 15;
 	
 	public GameStateManager() {
 		
@@ -38,14 +40,18 @@ public class GameStateManager {
 		pauseState = new PauseState(this);
 		paused = false;
 		
-		currentState = MENUSTATE;
+		currentState = LOADSTATE;
 		loadState(currentState);
 		
 	}
 	
 	private void loadState(int state) {
-		if(state == MENUSTATE)
+		if(state == LOADSTATE)
+			gameStates[state] = new Loading(this);
+		else if(state == MENUSTATE)
 			gameStates[state] = new MenuState(this);
+		else if(state == NEWGAMESTATE)
+			gameStates[state] = new NewGameState(this);
 		else if(state == LEVELSELECT)
 			gameStates[state] = new LevelSelect(this);
 		else if(state == GRASSSTATE)
@@ -56,6 +62,8 @@ public class GameStateManager {
 			gameStates[state] = new CaveState(this);
 		else if(state == ACIDSTATE)
 			gameStates[state] = new AcidState(this);
+		else if(state == MAPSTATE)
+			gameStates[state] = new MapState(this);
 	}
 	
 	private void unloadState(int state) {

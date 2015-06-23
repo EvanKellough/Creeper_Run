@@ -1,0 +1,25 @@
+package Mapper;
+import java.io.IOException;
+
+public class FileData {
+	
+	public static void main(String[] args)throws IOException{
+		String file_name = "C:/test.txt";
+		try{
+			ReadFile file = new ReadFile(file_name);
+			String[] aryLines = file.OpenFile();
+			int i;
+			for (i = 0; i < aryLines.length; i++){
+				System.out.println(aryLines[i]);
+			}
+		
+	}
+catch (IOException e){
+	System.out.println("Didn't work man :'(");
+}
+		WriteFile data = new WriteFile(file_name, true);
+		data.writeToFile("Line of Text");
+		
+		System.out.println("New Map Created!  Go you!");
+	}
+}

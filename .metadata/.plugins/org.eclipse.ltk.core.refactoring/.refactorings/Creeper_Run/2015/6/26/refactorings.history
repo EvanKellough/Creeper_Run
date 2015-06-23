@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;level1a.map&apos; to &apos;Creeper_Run/Resources/Maps&apos;&#x0A;- Original project: &apos;Creeper_Run&apos;&#x0A;- Destination element: &apos;Creeper_Run/Resources/Maps&apos;&#x0A;- Original element: &apos;level1a.map&apos;" description="Copy file" destination="/Resources&lt;Maps" element1="Resources/Maps/level1a.map" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1435001702277" units="0" version="1.0"/>
+</session>

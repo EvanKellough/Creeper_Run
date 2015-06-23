@@ -1,0 +1,52 @@
+package Mapper;
+import java.io.IOException;
+
+public class FileData {
+	
+	public static void main(String[] args)throws IOException{
+		String file_name = "/Users/Evan/Desktop/test.txt";
+		
+		try {
+			ReadFile file = new ReadFile(file_name);
+			String[] aryLines = file.OpenFile();
+			
+			int i;
+			for (i = 0; i < aryLines.length; i++){
+				System.out.println(aryLines[i]);
+			}
+			
+		}
+		catch (IOException e){
+			System.out.println(e.getMessage() );
+		}
+		
+		int x = 0; //Number of Columns
+		int y = 0;  //Number of Rows
+		int col = 152;
+		int row = 96;
+		
+		//Write to File
+		try{
+			WriteFile data = new WriteFile(file_name, true);
+			String num1 = String.valueOf(col);
+			String num2 = String.valueOf(row);
+			data.writeToFile(num1);
+			data.writeToFile(num2);
+				while(x <= col){
+				//WriteFile data = new WriteFile(file_name, true);
+					/*if(x = col, y = row){
+						//data.writeToFile(textLine);
+						data.writeToFile(text);
+						y++;
+					}*/
+				String number = String.valueOf(x);
+				data.writeToFile(number + " ");
+				System.out.println("Mission Complete");
+				x++;
+			}
+		}
+				catch (IOException e){
+					System.out.println(e.getMessage() );
+		}
+	}
+}

@@ -1,0 +1,46 @@
+package Main;
+
+import java.io.IOException;
+
+
+public class main {
+  
+  public static void main(String[]args){
+
+	  	String map = "C:/cartoon.txt";
+	  	
+	  	/*
+	  	try{
+	  		ReadFile file = new ReadFile(map)
+	  		String[] aryLines = file.OpenFile();
+	  		int i;
+	  		for (i = 0; i < aryLines.length; i++){
+	  			System.out.println(aryLines[i]);
+	  		}
+	  	}
+	  	catch (IOException e){
+	  		System.out.println("Didn't work :'(");
+	  	}
+  }
+  */
+  
+  //write to a file
+  WriteFile data = new WriteFile(map, true);
+  int x = 152;
+  int y = 96;
+  
+  data.writeToFile(x + " " + y + " ");
+  
+  int count = 0 ;
+  while ( count <= x )
+  {
+	 if (count = x){
+		 count = 0;
+	 }
+	 data.writeToFile(count + " ");
+     count++ ;
+  }
+  
+  System.out.println("New Map Created! Go You!");
+  }
+}

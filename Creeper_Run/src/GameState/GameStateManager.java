@@ -30,6 +30,7 @@ public class GameStateManager {
 	public static final int LOADSTATE = 13;
 	public static final int NEWGAMESTATE = 14;
 	public static final int MAPSTATE = 15;
+	public static final int CARTOONSTATE = 16;
 	
 	public GameStateManager() {
 		
@@ -63,6 +64,8 @@ public class GameStateManager {
 		else if(state == ACIDSTATE)
 			gameStates[state] = new AcidState(this);
 		else if(state == MAPSTATE)
+			gameStates[state] = new MapState(this);
+		else if(state == CARTOONSTATE)
 			gameStates[state] = new MapState(this);
 	}
 	

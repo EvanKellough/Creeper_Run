@@ -1,0 +1,9 @@
+package Mapper;
+import java.io.IOException;
+
+public class FileData {
+	
+	public static void main(String[] args)throws IOException{
+		String file_name = "C:/test.txt";
+	}
+}

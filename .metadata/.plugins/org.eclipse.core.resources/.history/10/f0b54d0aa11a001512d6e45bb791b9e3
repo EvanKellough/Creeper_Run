@@ -64,7 +64,7 @@ public class CartoonState extends GameState {
 		tileMap = new TileMap(30);
 		tileMap.loadTiles("/Tilesets/cartoontileset.gif");
 		//tileMap.loadMap("/Maps/cartoon.map");
-		tileMap.loadMap("/Maps/cartoon.map");
+		tileMap.loadMap("/Maps/level1a.map");
 		tileMap.setPosition(140, 0);
 		tileMap.setTween(1);
 		

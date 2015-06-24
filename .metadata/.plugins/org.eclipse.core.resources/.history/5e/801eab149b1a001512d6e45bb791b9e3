@@ -41,7 +41,7 @@ public class FileData {
 			String num2 = String.valueOf(row + " ");
 			newline.LineBreak(num1);
 			newline.LineBreak(num2);
-				while(x < max){
+				while(x <= max){
 					if(y == col){
 						//WriteFile newline = new WriteFile(file_name, true); //for creating new lines
 						String line = String.valueOf(x + " ");

@@ -66,7 +66,6 @@ public class NetherState extends GameState {
 		tileMap = new TileMap(30);
 		tileMap.loadTiles("/Tilesets/creepertileset.gif");
 		tileMap.loadMap("/Maps/level1b.map");
-		//tileMap.loadMap("/Maps/level1b.map");
 		tileMap.setPosition(140, 0);
 		tileMap.setTween(1);
 		

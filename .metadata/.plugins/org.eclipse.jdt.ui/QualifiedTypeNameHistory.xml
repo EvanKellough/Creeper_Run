@@ -6,4 +6,5 @@
 <fullyQualifiedTypeName name="Entity.RandomMap"/>
 <fullyQualifiedTypeName name="Entity.NewGame"/>
 <fullyQualifiedTypeName name="Entity.SaveGame"/>
+<fullyQualifiedTypeName name="java.io.BufferedReader"/>
 </qualifiedTypeNameHistroy>

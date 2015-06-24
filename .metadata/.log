@@ -6707,3 +6707,18 @@ Caused by: java.io.FileNotFoundException: /Users/Evan/Desktop/Workspace/.metadat
 	at org.eclipse.swt.internal.Compatibility.newFileOutputStream(Compatibility.java:194)
 	at org.eclipse.swt.graphics.ImageLoader.save(ImageLoader.java:256)
 	... 12 more
+
+!ENTRY org.eclipse.jdt.core 4 4 2015-06-23 13:30:45.235
+!MESSAGE Background Indexer Crash Recovery
+!STACK 0
+java.lang.OutOfMemoryError: Java heap space
+!SESSION 2015-06-23 13:31:06.937 -----------------------------------------------
+eclipse.buildId=4.4.2.M20150204-1700
+java.version=1.8.0_45
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product -keyring /Users/Evan/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.java.product -keyring /Users/Evan/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.core.net 1 0 2015-06-23 13:31:37.207
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16|127.0.0.1 by an external source. This value will be overwritten using the values from the preferences

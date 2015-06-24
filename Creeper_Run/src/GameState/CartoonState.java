@@ -347,7 +347,7 @@ public class CartoonState extends GameState {
 		player.loseLife();
 		player.reset();
 		player.setPosition(300, 131);
-		populateEnemies();
+		//populateEnemies();
 		blockInput = true;
 		eventCount = 0;
 		tileMap.setShaking(false, 0);

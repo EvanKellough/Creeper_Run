@@ -29,8 +29,6 @@ public class Configure {
                 for(int i=25;i<30;i++){                 
                     fw.append(String.valueOf(i)+"\n"); //Here I've made the small correction
                 }
-            }
-
             while((line=bfr.readLine())!=null){
                 System.out.println("ho ho ho");
             }
@@ -42,3 +40,4 @@ public class Configure {
         }
 
     }
+}

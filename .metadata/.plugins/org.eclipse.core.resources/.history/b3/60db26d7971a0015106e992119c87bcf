@@ -27,7 +27,7 @@ public class FileData {
 		 * In the future I plan to make a loop that creates a procedurally generated map.
 		 */
 		///////////////////////////////////////////////////
-		int x = 1; //prints numbers between 0 and the max
+		int x = 0; //prints numbers between 0 and the max
 		int y = 1; //Number of Rows
 		int z = 0; //Keeps track of numbers per row like a type writer
 		int col = 152;
@@ -46,7 +46,7 @@ public class FileData {
 						//WriteFile newline = new WriteFile(file_name, true); //for creating new lines
 						String line = String.valueOf(x + " ");
 						newline.LineBreak(line); //The newline method creates a new line, the writeToFile method does not
-						y = 1;
+						y = 0;
 						x++;
 					}
 					//WriteFile data = new WriteFile(file_name, true); //for making regular lines

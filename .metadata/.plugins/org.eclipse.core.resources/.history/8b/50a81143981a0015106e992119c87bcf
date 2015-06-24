@@ -46,7 +46,7 @@ public class FileData {
 						//WriteFile newline = new WriteFile(file_name, true); //for creating new lines
 						String line = String.valueOf(x + " ");
 						newline.LineBreak(line); //The newline method creates a new line, the writeToFile method does not
-						y = 1;
+						y = 0;
 						x++;
 					}
 					//WriteFile data = new WriteFile(file_name, true); //for making regular lines

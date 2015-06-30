@@ -58,7 +58,7 @@ public class CaveState extends GameState {
 	public void init() {
 		
 		// backgrounds
-		temple = new Background("/Backgrounds/cave.gif", 0.5, 0);
+		temple = new Background("/Backgrounds/minimalist_mountains.gif", 0.5, 0);
 		
 		// tilemap
 		tileMap = new TileMap(30);

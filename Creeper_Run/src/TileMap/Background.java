@@ -15,6 +15,7 @@ public class Background {
 	private double y;
 	private double dx;
 	private double dy;
+	private double tween = 4;
 	
 	private int width;
 	private int height;
@@ -62,8 +63,15 @@ public class Background {
 	}
 	
 	public void setPosition(double x, double y) {
+		
 		this.x = (x * xscale) % width;
 		this.y = (y * yscale) % height;
+		
+		
+		/*
+		this.x += (x - this.x) * tween;
+		this.y += (y - this.y) * tween;
+		*/
 	}
 	
 	public void setVector(double dx, double dy) {

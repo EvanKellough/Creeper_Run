@@ -39,12 +39,12 @@ public class Loading extends GameState {
 	
 	private int width = GamePanel.WIDTH;
 	private int height = GamePanel.HEIGHT;
-	private int uix = (width / 2) - 82;
-	private int uilogo = (width / 2) - 114;
+	private int uix = (width / 2) - 122;  //82
+	private int uilogo = (width / 2) - 320;  //114
 	private int uiy = height / 2; //newgame button
 	private int ui1 = height / 3; //quit button
 	private int uixstring = (width / 2) - 30;
-	private int uiystring = uiy + 60;
+	private int uiystring = uiy + 100;
 	
 	public Loading(GameStateManager gsm) {
 		  
@@ -53,11 +53,11 @@ public class Loading extends GameState {
 		try {
 			// load zaino Background
 			zaino = ImageIO.read(
-				getClass().getResourceAsStream("/Backgrounds/background_high.gif")
+				getClass().getResourceAsStream("/Backgrounds/dirtlow.png")
 				)/*.getSubimage(0, 300, 400, 300)*/;
 			
 			logo = ImageIO.read(
-					getClass().getResourceAsStream("/HUD/logo.gif"));
+					getClass().getResourceAsStream("/HUD/creeperrun.png"));
 			
 			// load sound fx
 			//JukeBox.load("/SFX/sample1.aif", "menuoption");

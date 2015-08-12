@@ -3,8 +3,7 @@ package Entity;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
-import Entity.Enemy;
-import Entity.Player;
+import Entity.Enemy2;
 import Entity.Player;
 import Handlers.Content;
 import Main.GamePanel;
@@ -45,8 +44,8 @@ public class Steve extends Enemy {
 		animation.setFrames(sprites);
 		animation.setDelay(4);
 		
-		west = true;
-		facingRight = false;
+		west = false;
+		facingRight = true;
 		
 	}
 	
@@ -80,19 +79,18 @@ public class Steve extends Enemy {
 		checkTileMapCollision();
 		calculateCorners(x, ydest + 1);
 		if(!bottomLeft) {
-			west = false;
-			east = facingRight = true;
-		}
-		if(!bottomRight) {
 			west = true;
 			east = facingRight = false;
+		}
+		if(!bottomRight) {
+			west = false;
+			east = facingRight = true;
 		}
 		setPosition(xtemp, ytemp);
 		
 		if(dx == 0) {
-			west = !west;
-			east = !east;
-			facingRight = !facingRight;
+			//dy = jumpStart;
+			jumping = true;
 		}
 		
 		// update animation

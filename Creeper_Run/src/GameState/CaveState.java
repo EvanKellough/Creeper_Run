@@ -133,7 +133,7 @@ public class CaveState extends GameState {
 		Steve st;
 		
 		st = new Steve(tileMap, player);
-		st.setPosition(480, 1550);
+		st.setPosition(600, 1570);
 		enemies.add(st);
 		
 

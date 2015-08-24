@@ -1,0 +1,18 @@
+/**
+ * This is the main class of the Fallout Fan Game Vault 6
+ * @author Evan Kellough
+ */
+
+
+package com.zaino.vault6;
+
+import java.awt.*;
+import javax.swing.JFrame;
+
+public class Game {
+	public static void main(String[] args){
+		JFrame frame;
+		frame = new JFrame("Vault 6");
+		frame.setVisible( true );
+	}
+}

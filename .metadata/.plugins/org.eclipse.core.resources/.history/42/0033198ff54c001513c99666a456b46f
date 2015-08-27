@@ -1,0 +1,60 @@
+package Audio;
+
+import java.util.HashMap;
+
+import javax.sound.sampled.*;
+
+
+public class Sound {
+	//Sound Effects
+	public static Sound enemyhit = loadSound("/SFX_WAV/enemyhit.wav");
+	public static Sound explode = loadSound("/SFX_WAV/explode.wav");
+	public static Sound menuoption = loadSound("/SFX_WAV/menuoption.wav");
+	public static Sound menuselect = loadSound("/SFX_WAV/menuselect.wav");
+	public static Sound playerattack = loadSound("/SFX_WAV/playerattack.wav");
+	public static Sound playercharge = loadSound("/SFX_WAV/playercharge.wav");
+	public static Sound playerhit = loadSound("/SFX_WAV/playerhit.wav");
+	public static Sound playerjump = loadSound("/SFX_WAV/playerjump.wav");
+	public static Sound playerlands = loadSound("/SFX_WAV/playerlands.wav");
+	public static Sound sample1 = loadSound("/SFX_WAV/sample1.wav");
+	public static Sound teleport = loadSound("/SFX_WAV/teleport.wav");
+
+	//Music
+	public static Sound level1 = loadSound("/Music_WAV/level1.wav");
+	public static Sound credits = loadSound("/Music_WAV/credits.wav");
+	public static Sound fanfare = loadSound("/Music_WAV/fanfare.wav");
+	public static Sound level3 = loadSound("/Music_WAV/level3.wav");
+
+	public static Sound loadSound(String fileName) {
+		Sound sound = new Sound();
+		try {
+			AudioInputStream ais = AudioSystem.getAudioInputStream(Sound.class.getResource(fileName));
+			Clip clip = AudioSystem.getClip();
+			clip.open(ais);
+			sound.clip = clip;
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return sound;
+	}
+
+	private Clip clip;
+
+	public void play() {
+		try {
+			if (clip != null) {
+				new Thread() {
+					public void run() {
+						synchronized (clip) {
+							clip.stop();
+							clip.setFramePosition(0);
+							clip.start();
+						}
+					}
+				}.start();
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+}

@@ -7,7 +7,8 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
-//import Audio.JukeBox;
+
+import Audio.Sound;
 import TileMap.TileMap;
 
 public class Player extends MapObject {
@@ -152,13 +153,6 @@ public class Player extends MapObject {
 		energyParticles = new ArrayList<EnergyParticle>();
 		
 		setAnimation(IDLE);
-		/*
-		JukeBox.load("/SFX/playerjump.mp3", "playerjump");
-		JukeBox.load("/SFX/playerlands.mp3", "playerlands");
-		JukeBox.load("/SFX/playerattack.mp3", "playerattack");
-		JukeBox.load("/SFX/playerhit.mp3", "playerhit");
-		JukeBox.load("/SFX/playercharge.mp3", "playercharge");
-		*/
 	}
 	
 	public void init(
@@ -193,7 +187,7 @@ public class Player extends MapObject {
 		if(knockback) return;
 		if(!attacking && !upattacking && !charging) {
 			charging = true;
-			//JukeBox.play("playercharge");
+			Sound.playercharge.play();
 			chargingTick = 0;
 		}
 	}
@@ -232,7 +226,7 @@ public class Player extends MapObject {
 	
 	public void hit(int damage) {
 		if(flinching) return;
-		//JukeBox.play("playerhit");
+		Sound.playerhit.play();
 		stop();
 		health -= damage;
 		if(health < 0) health = 0;
@@ -315,14 +309,14 @@ public class Player extends MapObject {
 			//sfx.get("jump").play();
 			dy = jumpStart;
 			falling = true;
-			//JukeBox.play("playerjump");
+			Sound.playerjump.play();
 		}
 		
 		if(doubleJump) {
 			dy = doubleJumpStart;
 			alreadyDoubleJump = true;
 			doubleJump = false;
-			//JukeBox.play("playerjump");
+			Sound.playerjump.play();
 			for(int i = 0; i < 6; i++) {
 				energyParticles.add(
 					new EnergyParticle(
@@ -369,7 +363,7 @@ public class Player extends MapObject {
 		checkTileMapCollision();
 		setPosition(xtemp, ytemp);
 		if(isFalling && !falling) {
-			//JukeBox.play("playerlands");
+			Sound.playerlands.play();
 		}
 		if(dx == 0) x = (int)x;
 		
@@ -458,11 +452,11 @@ public class Player extends MapObject {
 			if(!e.isDead() && intersects(e) && !charging) {
 				hit(e.getDamage());
 			}
-			/*
+			
 			if(e.isDead()) {
-				JukeBox.play("explode", 2000);
+				Sound.explode.play();
 			}
-			*/
+			
 		}
 		
 		// set animation, ordered by priority
@@ -483,7 +477,7 @@ public class Player extends MapObject {
 		}
 		else if(upattacking) {
 			if(currentAction != UPATTACKING) {
-				//JukeBox.play("playerattack");
+				Sound.playerattack.play();
 				setAnimation(UPATTACKING);
 				aur.x = (int)x - 15;
 				aur.y = (int)y - 50;
@@ -503,7 +497,7 @@ public class Player extends MapObject {
 		}
 		else if(attacking) {
 			if(currentAction != ATTACKING) {
-				//JukeBox.play("playerattack");
+				Sound.playerattack.play();
 				setAnimation(ATTACKING);
 				ar.y = (int)y - 6;
 				if(facingRight) ar.x = (int)x + 10;

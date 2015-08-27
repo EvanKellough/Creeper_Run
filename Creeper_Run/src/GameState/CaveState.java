@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 
 
-//import Audio.JukeBox;
+import Audio.Sound;
 import Entity.Enemy;
 import Entity.EnemyProjectile;
 import Entity.EnergyParticle;
@@ -125,6 +125,7 @@ public class CaveState extends GameState {
 		JukeBox.load("/Music/level3.mp3", "level3");
 		JukeBox.loop("level3", 600, JukeBox.getFrames("level3")-2200); 
 		*/
+		Sound.level3.play();
 	}
 	
 	private void populateEnemies() {

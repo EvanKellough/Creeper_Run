@@ -2,7 +2,7 @@ package GameState;
 
 import GameState.LevelSelect;
 
-import Audio.JukeBox;
+import Audio.Sound;
 import Main.GamePanel;
 
 public class GameStateManager {

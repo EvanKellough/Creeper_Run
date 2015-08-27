@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 //import javax.imageio.ImageI[[andlers.Keys;
 import javax.imageio.ImageIO;
 
-//import Audio.JukeBox;
+import Audio.Sound;
 import Entity.NewPlayerSaveInfo;
 import Handlers.Keys;
 import Main.GamePanel;
@@ -59,10 +59,6 @@ public class Loading extends GameState {
 			logo = ImageIO.read(
 					getClass().getResourceAsStream("/HUD/creeperrun.png"));
 			
-			// load sound fx
-			//JukeBox.load("/SFX/sample1.aif", "menuoption");
-			//JukeBox.load("/SFX/sample1.aif", "menuselect");
-
 		}
 		catch(Exception e) {
 			e.printStackTrace();
@@ -107,7 +103,7 @@ public class Loading extends GameState {
 	
 	private void select() {
 		if(currentChoice == 0) {
-			//JukeBox.play("menuselect");
+			Sound.menuselect.play();
 			gsm.setState(GameStateManager.MENUSTATE);
 		}
 		else if(currentChoice == 1) {

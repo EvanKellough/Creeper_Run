@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 //import javax.imageio.ImageI[[andlers.Keys;
 import javax.imageio.ImageIO;
 
-//import Audio.JukeBox;
+import Audio.Sound;
 import Entity.NewPlayerSaveInfo;
 import Handlers.Keys;
 import Main.GamePanel;
@@ -81,9 +81,6 @@ public class MenuState extends GameState {
 			font2 = new Font("Arial", Font.PLAIN, 10);
 			font3 = new Font("Arial", Font.PLAIN, 12);
 			
-			// load sound fx
-			//JukeBox.load("/SFX/sample1.aif", "menuoption");
-			//JukeBox.load("/SFX/sample1.aif", "menuselect");
 
 		}
 		catch(Exception e) {
@@ -131,7 +128,7 @@ public class MenuState extends GameState {
 	
 	private void select() {
 		if(currentChoice == 0) {
-			//JukeBox.play("menuselect");
+			Sound.menuselect.play();
 			gsm.setState(GameStateManager.GRASSSTATE
 					);
 		}
@@ -144,13 +141,13 @@ public class MenuState extends GameState {
 		if(Keys.isPressed(Keys.ENTER)) select();
 		if(Keys.isPressed(Keys.UP)) {
 			if(currentChoice > 0) {
-				//JukeBox.play("menuoption", 0);
+				Sound.menuoption.play();
 				currentChoice--;
 			}
 		}
 		if(Keys.isPressed(Keys.DOWN)) {
 			if(currentChoice < options.length - 1) {
-				//JukeBox.play("menuoption", 0);
+				Sound.menuoption.play();
 				currentChoice++;
 			}
 		}

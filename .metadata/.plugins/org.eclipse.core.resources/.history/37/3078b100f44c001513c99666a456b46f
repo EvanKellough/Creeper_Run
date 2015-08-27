@@ -1,0 +1,65 @@
+package Audio;
+
+import java.util.HashMap;
+
+import javax.sound.sampled.*;
+
+
+public class Sound {
+	public static Sound enemyhit = loadSound("/SFX/enemyhit.mp3");
+	public static Sound explode = loadSound("/SFX/explode.mp3");
+	public static Sound menuoption = loadSound("/SFX/menuoption.mp3");
+	public static Sound menuselect = loadSound("/SFX/menuselect.mp3");
+	public static Sound playerattack = loadSound("/SFX/playerattack.mp3");
+	public static Sound playercharge = loadSound("/SFX/playercharge.mp3");
+	public static Sound playerhit = loadSound("/SFX/playerhit.mp3");
+	public static Sound playerjump = loadSound("/SFX/playerjump.mp3");
+	public static Sound playerlands = loadSound("/SFX/playerlands.mp3");
+	public static Sound sample1 = loadSound("/SFX/sample1.wav");
+	public static Sound teleport = loadSound("/SFX/teleport.mp3");
+
+//	sample sounds to add more sounds later
+//	public static Sound pickup = loadSound("/SFX/pickup.mp3");
+//	public static Sound roll = loadSound("/SFX/roll.mp3");
+//	public static Sound shoot = loadSound("/SFX/shoot.mp3");
+//	public static Sound treasure = loadSound("/SFX/treasure.mp3");
+//	public static Sound crumble = loadSound("/SFX/crumble.mp3");
+//	public static Sound slide = loadSound("/SFX/slide.mp3");
+//	public static Sound cut = loadSound("/SFX/cut.mp3");
+//	public static Sound thud = loadSound("/SFX/thud.mp3");
+//	public static Sound ladder = loadSound("/SFX/ladder.mp3");
+//	public static Sound potion = loadSound("/SFX/potion.mp3");
+
+	public static Sound loadSound(String fileName) {
+		Sound sound = new Sound();
+		try {
+			AudioInputStream ais = AudioSystem.getAudioInputStream(Sound.class.getResource(fileName));
+			Clip clip = AudioSystem.getClip();
+			clip.open(ais);
+			sound.clip = clip;
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return sound;
+	}
+
+	private Clip clip;
+
+	public void play() {
+		try {
+			if (clip != null) {
+				new Thread() {
+					public void run() {
+						synchronized (clip) {
+							clip.stop();
+							clip.setFramePosition(0);
+							clip.start();
+						}
+					}
+				}.start();
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+}

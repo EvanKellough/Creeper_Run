@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename compilation unit &apos;Audio.JukeBox.java&apos; to &apos;Sound.java&apos;&#x0A;- Original project: &apos;Creeper_Run&apos;&#x0A;- Original element: &apos;Audio.JukeBox.java&apos;&#x0A;- Renamed element: &apos;Audio.Sound.java&apos;" description="Rename compilation unit &apos;JukeBox.java&apos;" flags="2" id="org.eclipse.jdt.ui.rename.compilationunit" input="/src&lt;Audio{JukeBox.java" name="Sound.java" references="false" stamp="1440703119446" version="1.0"/>
+</session>

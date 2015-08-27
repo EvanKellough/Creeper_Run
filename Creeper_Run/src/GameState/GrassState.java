@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
-//import Audio.JukeBox;
+import Audio.Sound;
 import Entity.Enemy;
 import Entity.Enemy2;
 import Entity.EnemyProjectile;
@@ -144,6 +144,7 @@ public class GrassState extends GameState {
 		JukeBox.load("/Music/level1", "level1");
 		JukeBox.loop("level1", 600, JukeBox.getFrames("level1") - 2200);
 		*/
+		Sound.level1.play();
 	}
 	
 	private void populateEnemies() {
@@ -286,7 +287,7 @@ public class GrassState extends GameState {
 	public void handleInput() {
 		if(Keys.isPressed(Keys.ESCAPE)) gsm.setPaused(true);
 		if(blockInput || player.getHealth() == 0) return;
-		//if(Keys.isPressed(Keys.MUTE)) JukeBox.stop("level2");
+		//if(Keys.isPressed(Keys.MUTE))  Sound.clip.stop();
 		player.setUp(Keys.keyState[Keys.UP]);
 		player.setDown(Keys.keyState[Keys.DOWN]);
 		

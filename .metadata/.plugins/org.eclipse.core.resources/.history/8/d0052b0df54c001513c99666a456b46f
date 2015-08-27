@@ -1,0 +1,65 @@
+package Audio;
+
+import java.util.HashMap;
+
+import javax.sound.sampled.*;
+
+
+public class Sound {
+	public static Sound enemyhit = loadSound("/SFX_WAV/enemyhit.mp3");
+	public static Sound explode = loadSound("/SFX_WAV/explode.mp3");
+	public static Sound menuoption = loadSound("/SFX_WAV/menuoption.mp3");
+	public static Sound menuselect = loadSound("/SFX_WAV/menuselect.mp3");
+	public static Sound playerattack = loadSound("/SFX_WAV/playerattack.mp3");
+	public static Sound playercharge = loadSound("/SFX_WAV/playercharge.mp3");
+	public static Sound playerhit = loadSound("/SFX_WAV/playerhit.mp3");
+	public static Sound playerjump = loadSound("/SFX_WAV/playerjump.mp3");
+	public static Sound playerlands = loadSound("/SFX_WAV/playerlands.mp3");
+	public static Sound sample1 = loadSound("/SFX_WAV/sample1.wav");
+	public static Sound teleport = loadSound("/SFX_WAV/teleport.mp3");
+
+//	sample sounds to add more sounds later
+//	public static Sound pickup = loadSound("/SFX_WAV/pickup.mp3");
+//	public static Sound roll = loadSound("/SFX_WAV/roll.mp3");
+//	public static Sound shoot = loadSound("/SFX_WAV/shoot.mp3");
+//	public static Sound treasure = loadSound("/SFX_WAV/treasure.mp3");
+//	public static Sound crumble = loadSound("/SFX_WAV/crumble.mp3");
+//	public static Sound slide = loadSound("/SFX_WAV/slide.mp3");
+//	public static Sound cut = loadSound("/SFX_WAV/cut.mp3");
+//	public static Sound thud = loadSound("/SFX_WAV/thud.mp3");
+//	public static Sound ladder = loadSound("/SFX_WAV/ladder.mp3");
+//	public static Sound potion = loadSound("/SFX_WAV/potion.mp3");
+
+	public static Sound loadSound(String fileName) {
+		Sound sound = new Sound();
+		try {
+			AudioInputStream ais = AudioSystem.getAudioInputStream(Sound.class.getResource(fileName));
+			Clip clip = AudioSystem.getClip();
+			clip.open(ais);
+			sound.clip = clip;
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return sound;
+	}
+
+	private Clip clip;
+
+	public void play() {
+		try {
+			if (clip != null) {
+				new Thread() {
+					public void run() {
+						synchronized (clip) {
+							clip.stop();
+							clip.setFramePosition(0);
+							clip.start();
+						}
+					}
+				}.start();
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+}

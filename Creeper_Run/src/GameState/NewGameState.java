@@ -16,7 +16,7 @@ import javax.imageio.ImageIO;
 
 
 
-//import Audio.JukeBox;
+import Audio.Sound;
 import Main.GamePanel;
 import Entity.NewGame;
 import Entity.NewPlayerSaveInfo;
@@ -84,9 +84,6 @@ public class NewGameState extends GameState {
 					getClass().getResourceAsStream("/interface/optionselect.gif")
 				);
 			
-			// load sound fx
-			//JukeBox.load("/SFX/menuoption.mp3", "menuoption");
-			//JukeBox.load("/SFX/menuselect.mp3", "menuselect");
 
 		}
 		catch(Exception e) {
@@ -123,13 +120,13 @@ public class NewGameState extends GameState {
 	
 	private void select() {
 		if(currentChoice == 0) {
-			//JukeBox.play("menuselect");
+			Sound.menuselect.play();
 			NewGame.init();
 			//NewGame.init();
 			gsm.setState(GameStateManager.NETHERSTATE);
 		}
 		else if(currentChoice == 1){
-			//JukeBox.play("menuselect");
+			Sound.menuselect.play();
 			//LoadGame.init();
 			gsm.setState(GameStateManager.NETHERSTATE);
 		}
@@ -138,7 +135,7 @@ public class NewGameState extends GameState {
 		}
 		/*
 		if(currentChoice == 0) {
-			//JukeBox.play("menuselect");
+			Sound.menuselect.play();
 			PlayerSave.init();
 			gsm.setState(GameStateManager.GRASSSTATE);
 		}
@@ -179,13 +176,13 @@ public class NewGameState extends GameState {
 		if(Keys.isPressed(Keys.ENTER)) select();
 		if(Keys.isPressed(Keys.UP)) {
 			if(currentChoice > 0) {
-				//JukeBox.play("menuoption", 0);
+				Sound.menuselect.play();
 				currentChoice--;
 			}
 		}
 		if(Keys.isPressed(Keys.DOWN)) {
 			if(currentChoice < options.length - 1) {
-				//JukeBox.play("menuoption", 0);
+				Sound.menuselect.play();
 				currentChoice++;
 			}
 		}

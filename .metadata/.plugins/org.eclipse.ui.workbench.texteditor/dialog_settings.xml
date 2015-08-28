@@ -2,37 +2,37 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="WriteFile" key="selection"/>
+		<item value="Juke" key="selection"/>
 		<item value="true" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="main"/>
-			<item value="WriteFile"/>
-			<item value="CaveState"/>
-			<item value="testFile"/>
-			<item value="setContents"/>
-			<item value="getContents"/>
-			<item value="LevelSelect"/>
-			<item value=" 0 "/>
+			<item value="Juke"/>
+			<item value=".mp3"/>
+			<item value="juke"/>
+			<item value="SFX"/>
+			<item value=".wav"/>
+			<item value="snd"/>
+			<item value="steve"/>
+			<item value="enemy"/>
 		</list>
 		<list key="replacehistory">
+			<item value=".wav"/>
+			<item value="SFX_WAV"/>
+			<item value=".mp3"/>
+			<item value="SFX"/>
+			<item value="tween"/>
+			<item value="getTween"/>
 			<item value="WriteFile"/>
 			<item value="main"/>
-			<item value="CartoonState"/>
-			<item value="Write"/>
-			<item value="Read"/>
-			<item value="NewGameState"/>
-			<item value="player2"/>
-			<item value="HUD2"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="265" key="DIALOG_WIDTH"/>
 		<item value="1|.Helvetica Neue DeskInterface|11.0|0|COCOA|1|.HelveticaNeueDeskInterface-Regular" key="DIALOG_FONT_NAME"/>
 		<item value="399" key="DIALOG_HEIGHT"/>
-		<item value="165" key="DIALOG_Y_ORIGIN"/>
-		<item value="284" key="DIALOG_X_ORIGIN"/>
+		<item value="220" key="DIALOG_Y_ORIGIN"/>
+		<item value="1012" key="DIALOG_X_ORIGIN"/>
 	</section>
 </section>

@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 //import javax.imageio.ImageI[[andlers.Keys;
 import javax.imageio.ImageIO;
 
-//import Audio.JukeBox;
+import Audio.Sound;
 import Entity.NewPlayerSaveInfo;
 import Handlers.Keys;
 import Main.GamePanel;
@@ -18,7 +18,7 @@ import TileMap.Background;
 
 public class MenuState extends GameState {
 	
-	private BufferedImage head;
+	private BufferedImage pig;
 	private BufferedImage newgame;
 	private BufferedImage quit;
 	private BufferedImage zaino;
@@ -29,7 +29,6 @@ public class MenuState extends GameState {
 	private int currentChoice = 0;
 	private String[] options = {
 		"New Game",
-		"Demos",
 		"Quit"
 	};
 	
@@ -42,8 +41,10 @@ public class MenuState extends GameState {
 	
 	private int width = GamePanel.WIDTH;
 	private int height = GamePanel.HEIGHT;
-	private int uix = (width / 2) - 82;
-	private int uilogo = (width / 2) - 114;
+	private int uix = (width / 2) - 122;
+	private int ui3 = (width / 2) - 82;
+	private int ui4 = (width / 2) - 115;
+	private int uilogo = (width / 2) - 320;
 	private int uiy = height / 2; //newgame button
 	private int ui1 = uiy + 60; //demo button
 	private int ui2 = ui1 + 60; //quit button
@@ -55,7 +56,7 @@ public class MenuState extends GameState {
 		try {
 			// load zaino Background
 			zaino = ImageIO.read(
-				getClass().getResourceAsStream("/Backgrounds/background_high.gif")
+				getClass().getResourceAsStream("/Backgrounds/dirtlow.png")
 				)/*.getSubimage(0, 300, 400, 300)*/;
 			
 			newgame = ImageIO.read(
@@ -65,13 +66,13 @@ public class MenuState extends GameState {
 					getClass().getResourceAsStream("/interface/quit.gif"));
 			
 			logo = ImageIO.read(
-					getClass().getResourceAsStream("/HUD/logo.gif"));
+					getClass().getResourceAsStream("/HUD/creeperrun.png"));
 			
 			select = ImageIO.read(
 					getClass().getResourceAsStream("/interface/optionselect.gif"));
 			
-			demos = ImageIO.read(
-					getClass().getResourceAsStream("/interface/demos.gif"));
+			pig = ImageIO.read(
+					getClass().getResourceAsStream("/Sprites/Enemies/pig.gif"));
 			
 			// titles and fonts
 			titleColor = Color.WHITE;
@@ -80,9 +81,6 @@ public class MenuState extends GameState {
 			font2 = new Font("Arial", Font.PLAIN, 10);
 			font3 = new Font("Arial", Font.PLAIN, 12);
 			
-			// load sound fx
-			//JukeBox.load("/SFX/sample1.aif", "menuoption");
-			//JukeBox.load("/SFX/sample1.aif", "menuselect");
 
 		}
 		catch(Exception e) {
@@ -106,6 +104,7 @@ public class MenuState extends GameState {
 		// draw bg
 		g.setColor(Color.GREEN);
 		g.fillRect(0, 0, GamePanel.WIDTH, GamePanel.HEIGHT);
+		font = new Font("Times Mew Roman", Font.PLAIN, 14);
 		
 		//g.setLocationRelativeTo(null);
 		
@@ -114,36 +113,26 @@ public class MenuState extends GameState {
 		g.setFont(titleFont);
 		g.drawImage(zaino, 0, 0, null);
 		
-		/*
+		
 		// draw floating head
-		if(currentChoice == 0) g.drawImage(head, 125, 84, null);
-		else if(currentChoice == 1) g.drawImage(head, 125, 104, null);
-		*/
+		if(currentChoice == 0) g.drawImage(pig, ui4, uiy - 20, null);
+		if(currentChoice == 1) g.drawImage(pig, ui4, ui1 - 20, null);
+		
 		
 		g.drawImage(logo, uilogo, 10, null);
-		g.drawImage(newgame, uix, uiy, null);
-		g.drawImage(demos, uix, ui1, null);
-		g.drawImage(quit, uix, ui2, null);
-
-		//highlights buttons
-		if(currentChoice == 0) g.drawImage(select, uix, uiy, null);
-		if(currentChoice == 1) g.drawImage(select, uix, ui1, null);
-		if(currentChoice == 2) g.drawImage(select, uix, ui2, null);
-		
+		g.drawString("New Game", ui3, uiy);
+		g.drawString("Quit", ui3, ui1);
 		
 		
 	}
 	
 	private void select() {
 		if(currentChoice == 0) {
-			//JukeBox.play("menuselect");
-			gsm.setState(GameStateManager.NEWGAMESTATE);
+			Sound.menuselect.play();
+			gsm.setState(GameStateManager.GRASSSTATE
+					);
 		}
 		else if(currentChoice == 1) {
-			//JukeBox.play("menuselect");
-			gsm.setState(GameStateManager.LEVELSELECT);
-		}
-		else if(currentChoice == 2) {
 			System.exit(0);
 		}
 	}
@@ -152,13 +141,13 @@ public class MenuState extends GameState {
 		if(Keys.isPressed(Keys.ENTER)) select();
 		if(Keys.isPressed(Keys.UP)) {
 			if(currentChoice > 0) {
-				//JukeBox.play("menuoption", 0);
+				Sound.menuoption.play();
 				currentChoice--;
 			}
 		}
 		if(Keys.isPressed(Keys.DOWN)) {
 			if(currentChoice < options.length - 1) {
-				//JukeBox.play("menuoption", 0);
+				Sound.menuoption.play();
 				currentChoice++;
 			}
 		}

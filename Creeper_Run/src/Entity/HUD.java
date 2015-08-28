@@ -25,12 +25,14 @@ public class HUD {
 			heart = health.getSubimage(0, 0, 13, 12);
 			life = health.getSubimage(0, 12, 12, 11);
 			
+			/*
 			items = ImageIO.read(
 					getClass().getResourceAsStream("/HUD/items.gif")
 					)/*.getSubimage(0, 300, 400, 300)*/;
 			hudbar = ImageIO.read(
 					getClass().getResourceAsStream("/HUD/HUD_bar.gif")
 					)/*.getSubimage(0, 300, 400, 300)*/;
+			
 				
 		}
 		catch(Exception e) {
@@ -39,8 +41,8 @@ public class HUD {
 	}
 	
 	public void draw(Graphics2D g) {
-		g.drawImage(items, 300-(252 / 2), 290, null);
-		g.drawImage(hudbar, 0, 0, null);
+		//g.drawImage(items, 300-(252 / 2), 290, null);
+		//g.drawImage(hudbar, 0, 0, null);
 		for(int i = 0; i < player.getHealth(); i++) {
 			g.drawImage(heart, 10 + i * 15, 10, null);
 		}

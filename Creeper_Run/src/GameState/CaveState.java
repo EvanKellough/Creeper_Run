@@ -7,7 +7,8 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
-//import Audio.JukeBox;
+
+import Audio.Sound;
 import Entity.Enemy;
 import Entity.EnemyProjectile;
 import Entity.EnergyParticle;
@@ -15,6 +16,7 @@ import Entity.Explosion;
 import Entity.HUD;
 import Entity.Player;
 import Entity.NewPlayerSaveInfo;
+import Entity.Steve;
 import Entity.Teleport;
 import Entity.Title;
 import Entity.Enemies.GelPop;
@@ -123,15 +125,19 @@ public class CaveState extends GameState {
 		JukeBox.load("/Music/level3.mp3", "level3");
 		JukeBox.loop("level3", 600, JukeBox.getFrames("level3")-2200); 
 		*/
+		Sound.level3.play();
 	}
 	
 	private void populateEnemies() {
 		enemies.clear();
 		GelPop gp;
+		Steve st;
 		
-		gp = new GelPop(tileMap, player);
-		gp.setPosition(250, 931);
-		enemies.add(gp);
+		st = new Steve(tileMap, player);
+		st.setPosition(600, 1570);
+		enemies.add(st);
+		
+
 		gp = new GelPop(tileMap, player);
 		gp.setPosition(50, 100);
 		enemies.add(gp);

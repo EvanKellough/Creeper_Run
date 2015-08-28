@@ -4,15 +4,19 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+
 import javax.imageio.ImageIO;
-//import Audio.JukeBox;
+
+import Audio.Sound;
 import Entity.Enemy;
+import Entity.Enemy2;
 import Entity.EnemyProjectile;
 import Entity.EnergyParticle;
 import Entity.Explosion;
 import Entity.HUD;
 import Entity.Player;
 import Entity.NewPlayerSaveInfo;
+import Entity.Steve;
 import Entity.Teleport;
 import Entity.Title;
 import Entity.Enemies.GelPop;
@@ -30,6 +34,7 @@ public class GrassState extends GameState {
 	private Player player;
 	private TileMap tileMap;
 	private ArrayList<Enemy> enemies;
+	private ArrayList<Enemy2> enemies2;
 	private ArrayList<EnemyProjectile> eprojectiles;
 	private ArrayList<EnergyParticle> energyParticles;
 	private ArrayList<Explosion> explosions;
@@ -56,7 +61,7 @@ public class GrassState extends GameState {
 	public void init() {
 		
 		// backgrounds
-		sky = new Background("/Backgrounds/sky.gif", 200);
+		sky = new Background("/Backgrounds/skylarge.gif", 200);
 		//clouds = new Background("/Backgrounds/clouds.gif", 0.1);
 		//mountains = new Background("/Backgrounds/mountains.gif", 0.2);
 		
@@ -82,8 +87,16 @@ public class GrassState extends GameState {
 		
 		// enemies
 		enemies = new ArrayList<Enemy>();
+		enemies2 = new ArrayList<Enemy2>();
 		eprojectiles = new ArrayList<EnemyProjectile>();
 		populateEnemies();
+		populateEnemies2();
+		
+		Steve st;
+		
+		st = new Steve(tileMap, player);
+		st.setPosition(542, 1550);
+		enemies.add(st);
 		
 		// energy particle
 		energyParticles = new ArrayList<EnergyParticle>();
@@ -131,10 +144,15 @@ public class GrassState extends GameState {
 		JukeBox.load("/Music/level1", "level1");
 		JukeBox.loop("level1", 600, JukeBox.getFrames("level1") - 2200);
 		*/
+		Sound.level1.play();
 	}
 	
 	private void populateEnemies() {
 		enemies.clear();
+	}
+	
+	private void populateEnemies2() {
+		enemies2.clear();
 	}
 	
 	public void update() {
@@ -269,15 +287,14 @@ public class GrassState extends GameState {
 	public void handleInput() {
 		if(Keys.isPressed(Keys.ESCAPE)) gsm.setPaused(true);
 		if(blockInput || player.getHealth() == 0) return;
-		//if(Keys.isPressed(Keys.MUTE)) JukeBox.stop("level2");
+		//if(Keys.isPressed(Keys.MUTE))  Sound.clip.stop();
 		player.setUp(Keys.keyState[Keys.UP]);
 		player.setDown(Keys.keyState[Keys.DOWN]);
 		
 		player.setWest(Keys.keyState[Keys.WEST]);
 		player.setEast(Keys.keyState[Keys.EAST]);
-		player.setNorth(Keys.keyState[Keys.NORTH]);
-		player.setSouth(Keys.keyState[Keys.SOUTH]);
-		
+		player.setJumping(Keys.keyState[Keys.NORTH]);
+
 		player.setDashing(Keys.keyState[Keys.BUTTON2]);
 		if(Keys.isPressed(Keys.BUTTON3)) player.setAttacking();
 		if(Keys.isPressed(Keys.BUTTON4)) player.setCharging();

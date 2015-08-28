@@ -2,7 +2,7 @@ package GameState;
 
 import GameState.LevelSelect;
 
-import Audio.JukeBox;
+import Audio.Sound;
 import Main.GamePanel;
 
 public class GameStateManager {
@@ -65,8 +65,6 @@ public class GameStateManager {
 			gameStates[state] = new AcidState(this);
 		else if(state == MAPSTATE)
 			gameStates[state] = new MapState(this);
-		else if(state == CARTOONSTATE)
-			gameStates[state] = new CartoonState(this);
 	}
 	
 	private void unloadState(int state) {

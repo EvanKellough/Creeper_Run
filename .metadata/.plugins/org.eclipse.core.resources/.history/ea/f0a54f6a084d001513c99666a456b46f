@@ -1,0 +1,79 @@
+/**
+ * This is the main class of the Fallout Fan Game Vault 6
+ * @author Evan Kellough
+ */
+
+
+package com.zaino.vault6;
+
+import java.awt.*;
+import java.util.Scanner;
+import javax.swing.*;
+
+import com.zaino.vault6.*; //imports all game files
+
+public class Game {
+	
+	public static void main(String[] args){
+
+		boolean win = false;
+		int choice = 0;
+		
+		Scanner Scan = new Scanner(System.in);
+		System.out.println("Welcome to Vault 6!  A fan made indie text adventure game based on the cancelled");
+		System.out.println("2000 game Fallout Extreme!  Please Enter 0 to begin your journey!");
+		choice = Scan.nextInt();
+		
+		while (choice != 10){
+		switch (choice){
+			case 0:
+				System.out.println("You begin your journey");
+				break;
+			case 1:
+				System.out.println("a");
+				break;
+			case 2:
+				System.out.println("b");
+				break;
+			case 3:
+				System.out.println("c");
+				break;
+			case 4:
+				System.out.println("d");
+				break;
+			case 5:
+				System.out.println("e");
+				break;
+			case 6:
+				System.out.println("f");
+				break;
+			case 7:
+				System.out.println("g");
+				break;
+			case 8:
+				System.out.println("h");
+				break;
+			case 9:
+				System.out.println("");
+				break;
+			case 10:
+				System.out.println("You have completed your journey!  Congratulations!");
+				win = true;
+				break;
+			}
+		}
+		System.out.println("You have completed your journey!  Congratulations!");
+	}
+}
+
+/*		boolean lt, rt = false;
+		JPanel scene = new JPanel ();
+		JButton leftbutton = new JButton ();
+		JButton rightbutton = new JButton ();
+		//GUI Stuff for version 2
+		JFrame frame;
+		frame = new JFrame("Vault 6");
+		frame.setVisible( true );
+		frame.setSize(600, 600);
+		frame.setDefaultCloseOperation(1);
+		frame.setLocationRelativeTo(null);*/
